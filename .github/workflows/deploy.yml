@@ -1,0 +1,29 @@
+name: Build & Deploy
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.4.0
+      - uses: cachix/install-nix-action@v16
+      - uses: cachix/cachix-action@v10
+        with:
+          name: domenkozar-private
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          # TODO: remove once 0.7.0 is out
+          installCommand: nix-env -if https://github.com/cachix/cachix/tarball/master --substituters 'https://cache.nixos.org https://cachix.cachix.org' --trusted-public-keys 'cachix.cachix.org-1:eWNHQldwUO7G2VkjpnjDbWwy4KQ/HNxht7H4SSoMckM= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY='
+      - name: Build 
+        run: nix build -L
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        env:
+          CACHIX_ACTIVATE_TOKEN: "${{ secrets.CACHIX_ACTIVATE_TOKEN }}"
+        run: |
+          cachix push domenkozar-private ./result
+          cachix deploy activate ./result
