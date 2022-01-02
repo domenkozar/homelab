@@ -2,7 +2,7 @@
   description = "Cachix Deploy Agents";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     # TODO: remove with 0.7.0 release
     cachix.url = "github:cachix/cachix";
