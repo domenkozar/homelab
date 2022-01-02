@@ -11,7 +11,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  time.timeZone = "Europe/Ljubljana";
+  time.timeZone = "Europe/Madrid";
 
   networking.hostName = "cherimoya";
   networking.networkmanager.enable = true;
