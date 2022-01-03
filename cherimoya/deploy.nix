@@ -44,6 +44,8 @@ in {
       after = ["network.target"];
       path = [ config.nix.package ];
       wantedBy = [ "multi-user.target" ];
+      # don't restart while changing
+      reloadIfChanged = true;
       serviceConfig = {
         EnvironmentFile = cfg.credentialsFile;
         ExecStart = "${cfg.package}/bin/cachix deploy agent ${cfg.name} ${if cfg.profile != null then profile else ""}";
