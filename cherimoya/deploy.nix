@@ -47,6 +47,7 @@ in {
       # don't restart while changing
       reloadIfChanged = true;
       serviceConfig = {
+        Restart = "on-failure";
         EnvironmentFile = cfg.credentialsFile;
         ExecStart = "${cfg.package}/bin/cachix deploy agent ${cfg.name} ${if cfg.profile != null then profile else ""}";
       };
