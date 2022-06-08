@@ -2,13 +2,11 @@
   description = "Cachix Deploy Agents";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    # TODO: remove with 0.7.0 release
-    cachix.url = "github:cachix/cachix";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, cachix }: 
+  outputs = { self, nixpkgs, nixos-hardware }: 
     let
       system = "x86_64-linux";
       pkgs = import "${nixpkgs}" {
@@ -21,7 +19,6 @@
           ./cherimoya 
           (nixos-hardware + "/lenovo/thinkpad/p14s/amd/gen2") 
         ];
-        services.cachix-agent.package = import cachix { inherit system; };
       };
     in {
       defaultPackage."${system}" = pkgs.writeText "cachix-agents.json" (builtins.toJSON {

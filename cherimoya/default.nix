@@ -4,7 +4,6 @@
   imports =
     [
       ./hardware-configuration.nix
-      ./deploy.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -119,7 +118,7 @@
     tree
     #anki
     sqlite-interactive
-    sshfsFuse
+    sshfs-fuse
     sshuttle
     fuse
     jwhois
@@ -132,7 +131,7 @@
     # https://github.com/matejc/tarman/issues/24
     # pythonPackages.tarman
     sysstat
-    speedtest_cli
+    speedtest-cli
     mosh
     ngrok
     mtpfs
@@ -146,7 +145,7 @@
     wget
     nmap
     ncdu
-    telnet
+    inetutils
     unzip
     jq
     psmisc
@@ -223,7 +222,7 @@
     zoom-us
 
     # man pages
-    manpages
+    man-pages
     posix_man_pages
 
     docker
@@ -258,8 +257,8 @@
 
   # TODO: usb backup auto play
 
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "domen" ];
+  #virtualisation.virtualbox.host.enable = true;
+  #users.extraGroups.vboxusers.members = [ "domen" ];
 
   virtualisation.docker.enable = true;
   systemd.enableUnifiedCgroupHierarchy = false;
