@@ -10,7 +10,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  time.timeZone = "Europe/Lisbon";
+  # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time.timeZone = "America/Bogota";
 
   networking.hostName = "cherimoya";
   networking.networkmanager.enable = true;
