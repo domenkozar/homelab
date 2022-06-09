@@ -79,6 +79,9 @@
     shell = "/run/current-system/sw/bin/bash";
   };
 
+  # This should be fixed upstream soon
+  systemd.services.cachix-agent.environment = { USER = "root"; };
+
   environment.interactiveShellInit = ''
     export PATH="$HOME/bin:$PATH"
 
