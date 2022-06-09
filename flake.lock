@@ -1,27 +1,12 @@
 {
   "nodes": {
-    "cachix": {
-      "locked": {
-        "lastModified": 1646321211,
-        "narHash": "sha256-iFdVzfhoI1So3blAYDe5R9NSqHz/A8YK0qkL9HpQz4Y=",
-        "owner": "cachix",
-        "repo": "cachix",
-        "rev": "de2c6559e364d2684f9858337948874a0d564718",
-        "type": "github"
-      },
-      "original": {
-        "owner": "cachix",
-        "repo": "cachix",
-        "type": "github"
-      }
-    },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1648141026,
-        "narHash": "sha256-h8e3+5EZFbYHTMb0DN2ACuQTJBNHpqigvmEV1w2WIuE=",
+        "lastModified": 1654057797,
+        "narHash": "sha256-mXo7C4v7Jj2feBzcReu1Eu/3Rnw5b023E9kOyFsHZQw=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "feceb4d24f582817d8f6e737cd40af9e162dee05",
+        "rev": "0cab18a48de7914ef8cad35dca0bb36868f3e1af",
         "type": "github"
       },
       "original": {
@@ -32,23 +17,22 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1647992509,
-        "narHash": "sha256-AG40Nt5OWz0LBs5p457emOuwLKOvTtcv/2fUdnEN3Ws=",
+        "lastModified": 1654622265,
+        "narHash": "sha256-AltUA8bPbXeRgzcDhQEURVHqQhTByxk6Xtgf+CYmEFk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d2caa9377539e3b5ff1272ac3aa2d15f3081069f",
+        "rev": "11e805f9935f6ab4b049351ac14f2d1aa93cf1d3",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-21.11",
+        "ref": "nixos-22.05",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "root": {
       "inputs": {
-        "cachix": "cachix",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs"
       }
