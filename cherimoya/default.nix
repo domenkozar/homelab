@@ -110,7 +110,6 @@
 
   environment.systemPackages = with pkgs; [
     # generally useful tools
-    links2
     wgetpaste
     pwgen
     curl
@@ -177,8 +176,6 @@
     dmenu
     i3status
     i3lock
-    imagemagick
-    imagemagick
     imagemagick
     i3minator
     # TODO: make it a floating window so it's not annoying
