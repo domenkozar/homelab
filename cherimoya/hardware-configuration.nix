@@ -11,7 +11,6 @@
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_5_18;
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/40c2f90d-d172-4fdf-93d9-ce6df8679398";
