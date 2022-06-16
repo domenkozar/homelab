@@ -12,6 +12,9 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
 
+  # 5_18 doesn't work with this gpu
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_5_17;
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/40c2f90d-d172-4fdf-93d9-ce6df8679398";
       fsType = "btrfs";
