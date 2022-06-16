@@ -10,7 +10,7 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.kernelModules = [ "kvm-amd" ];
-
+  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_5_18;
 
   fileSystems."/" =

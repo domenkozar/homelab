@@ -233,6 +233,7 @@
   services.xserver = {
     enable = true;
     autorun = true;
+    videoDrivers = [ "amdgpu" ];
     libinput.enable = true;
     windowManager.i3.enable = true;
     desktopManager.xfce.enable = true;
