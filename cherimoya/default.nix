@@ -280,8 +280,7 @@
     blueman.enable = true;
 
     # auto set timezone
-    # TODO: this screws up sometimes
-    #localtime.enable = true;
+    localtime.enable = true;
 
     cachix-agent.enable = true;
 
