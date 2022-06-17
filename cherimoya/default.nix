@@ -165,6 +165,10 @@
     ghc
     cabal2nix
     cabal-install
+    (pkgs.haskell-language-server.override {
+      dynamic = true;
+      supportedGhcVersions = [ "8107" "922" ]; 
+    })
 
     # elm
     elm2nix
