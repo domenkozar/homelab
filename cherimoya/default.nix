@@ -260,8 +260,8 @@
 
   # TODO: usb backup auto play
 
-  #virtualisation.virtualbox.host.enable = true;
-  #users.extraGroups.vboxusers.members = [ "domen" ];
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "domen" ];
 
   virtualisation.docker.enable = true;
   systemd.enableUnifiedCgroupHierarchy = false;
