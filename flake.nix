@@ -4,9 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
     nixos-hardware.url = "github:nixos/nixos-hardware";
+    cachix.url = "github:cachix/cachix/connection-handling";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware }:
+  outputs = { self, nixpkgs, nixos-hardware, cachix }:
     let
       system = "x86_64-linux";
       pkgs = import "${nixpkgs}" {
@@ -19,6 +20,7 @@
           ./cherimoya 
           (nixos-hardware + "/lenovo/thinkpad/p14s/amd/gen2") 
         ];
+        services.cachix-agent.package = import cachix { inherit system; };
       };
     in {
       defaultPackage."${system}" = pkgs.writeText "cachix-agents.json" (builtins.toJSON {

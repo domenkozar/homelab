@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "cachix": {
+      "locked": {
+        "lastModified": 1656537056,
+        "narHash": "sha256-Su/s7zT9EDnZLKWCdzziUlz17c+izbfjRmcA1QhA7ds=",
+        "owner": "cachix",
+        "repo": "cachix",
+        "rev": "29d21278fcdc5fc301155c14d3dce87bf7b89b4a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cachix",
+        "ref": "connection-handling",
+        "repo": "cachix",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1654057797,
@@ -33,6 +49,7 @@
     },
     "root": {
       "inputs": {
+        "cachix": "cachix",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs"
       }
