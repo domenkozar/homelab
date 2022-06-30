@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:domenkozar/nixpkgs/backport-cachix-agent-verbose-22.05";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    cachix.url = "github:cachix/cachix/connection-handling";
+    cachix.url = "github:cachix/cachix/master";
   };
 
   outputs = { self, nixpkgs, nixos-hardware, cachix }:
