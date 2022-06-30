@@ -2,7 +2,7 @@
   description = "Cachix Deploy Agents";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
+    nixpkgs.url = "github:domenkozar/nixpkgs/backport-cachix-agent-verbose-22.05";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     cachix.url = "github:cachix/cachix/connection-handling";
   };
@@ -21,6 +21,7 @@
           (nixos-hardware + "/lenovo/thinkpad/p14s/amd/gen2") 
         ];
         services.cachix-agent.package = import cachix { inherit system; };
+        services.cachix-agent.verbose = true;
       };
     in {
       defaultPackage."${system}" = pkgs.writeText "cachix-agents.json" (builtins.toJSON {
