@@ -2,7 +2,7 @@
   description = "Cachix Deploy Agents";
 
   inputs = {
-    nixpkgs.url = "github:domenkozar/nixpkgs/backport-cachix-agent-verbose-22.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-22.05";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     cachix.url = "github:cachix/cachix/master";
   };

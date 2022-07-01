@@ -167,7 +167,7 @@
     cabal-install
     (pkgs.haskell-language-server.override {
       dynamic = true;
-      supportedGhcVersions = [ "8107" "922" ]; 
+      supportedGhcVersions = [ "8107" "923" ]; 
     })
 
     # elm

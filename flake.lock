@@ -33,16 +33,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1656602834,
-        "narHash": "sha256-5g8ll8kgstMtdAhKdAfkv5YuhmxVE+77IuFBubK3i3k=",
-        "owner": "domenkozar",
+        "lastModified": 1656686812,
+        "narHash": "sha256-n5fFPHw/BX02fKpq9xQk9XZFa/Wqy1eGUqqeLJwzENw=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "728605f042deceb41eaf514b6f1b7511c9719804",
+        "rev": "e4e484c84f31d47c059c1c2faa921db85d7b73ce",
         "type": "github"
       },
       "original": {
-        "owner": "domenkozar",
-        "ref": "backport-cachix-agent-verbose-22.05",
+        "owner": "NixOS",
+        "ref": "release-22.05",
         "repo": "nixpkgs",
         "type": "github"
       }
