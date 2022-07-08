@@ -2,11 +2,11 @@
   "nodes": {
     "cachix": {
       "locked": {
-        "lastModified": 1657199751,
-        "narHash": "sha256-dRtU6Hs4TRVy225QFz+8r3uORqAJN4iAIjjkHU1UCfM=",
+        "lastModified": 1657299609,
+        "narHash": "sha256-eQJUtVb4XkZpCISduxRHnP8WNsxGDRaZlgdJlJ0w294=",
         "owner": "cachix",
         "repo": "cachix",
-        "rev": "14e953d5c589895e3e3ce110105b8bb62e0c124d",
+        "rev": "a22b12f988b59eb55a45c15f9e07b349cbb6ce52",
         "type": "github"
       },
       "original": {
@@ -33,16 +33,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1657027964,
-        "narHash": "sha256-jseM2zvERPZe5yErbc3wrd6wK8gp0f+e18KJngs5qlo=",
+        "lastModified": 1657296039,
+        "narHash": "sha256-Ghh39+aS+pw5sTP/ZO8VIKE6sBhMadDaQZtf+3yu4Vc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9e96b1562d67a90ca2f7cfb919f1e86b76a65a2c",
+        "rev": "71d7a4c037dc4f3e98d5c4a81b941933cf5bf675",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-22.05",
+        "ref": "release-22.05",
         "repo": "nixpkgs",
         "type": "github"
       }
