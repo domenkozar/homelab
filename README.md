@@ -1,3 +1,3 @@
-My workstations built with [Nix](https://nixos.org/), cached with [Cachix](https://cachix.org/) and deployed with [Cachix Deploy](https://docs.cachix.org/deploy).
+My workstations built with [Nix](https://nixos.org/), cached with [Cachix](https://cachix.org/) and deployed with [Cachix Deploy](https://docs.cachix.org/deploy) using GitHub Actions.
 
-The flake gets built and deployed with GitHub Actions.
+
