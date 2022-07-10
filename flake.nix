@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/release-22.05";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    cachix.url = "github:cachix/cachix/cachix-deploy-handle-restarts";
+    cachix.url = "github:cachix/cachix/master";
   };
 
   outputs = { self, nixpkgs, nixos-hardware, cachix }:
