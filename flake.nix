@@ -21,7 +21,6 @@
           (nixos-hardware + "/lenovo/thinkpad/p14s/amd/gen2") 
         ];
         services.cachix-agent.package = import cachix { inherit system; };
-        services.cachix-agent.verbose = true;
       };
     in {
       defaultPackage."${system}" = pkgs.writeText "cachix-agents.json" (builtins.toJSON {
