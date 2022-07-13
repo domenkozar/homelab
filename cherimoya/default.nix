@@ -271,11 +271,6 @@
   # 21.11 requires this to be set
   users.users.localtimed.group = "localtimed";
   users.groups.localtimed = {};
-
-  # This will be fixed in Cachix 0.8.0
-  systemd.services.cachix-agent.restartIfChanged = lib.mkForce true;
-  systemd.services.cachix-agent.unitConfig.X-StopOnRemoval = lib.mkForce false;
-  systemd.services.cachix-agent.serviceConfig.KillMode = "process";
  
   services = {
     locate.enable = true;
