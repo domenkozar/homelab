@@ -13,6 +13,9 @@ jobs:
       - run: sudo rm -rf /opt&
       - uses: actions/checkout@v3
       - uses: cachix/install-nix-action@v17
+        with:
+          install_url: https://nixos-nix-install-tests.cachix.org/serve/jg4ly16nbr16asyzcz30clmzrygb03pb/install
+          install_options: --tarball-url-prefix https://nixos-nix-install-tests.cachix.org/serve
       - uses: cachix/cachix-action@v10
         with:
           name: domenkozar-private
