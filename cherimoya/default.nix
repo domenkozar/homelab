@@ -11,7 +11,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time.timeZone = "America/Bogota";
+  time.timeZone = "Europe/Madrid";
 
   networking.hostName = "cherimoya";
   networking.networkmanager.enable = true;
