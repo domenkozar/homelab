@@ -60,10 +60,11 @@
 
   nix = {
    buildCores = 0;
-   maxJobs = 8;
+   maxJobs = 4;
    trustedUsers = [ "root" "@wheel" ];
    extraOptions = ''
      narinfo-cache-negative-ttl = 0
+     extra-experimental-features = flakes nix-command
    '';
   };
 
