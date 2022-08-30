@@ -163,7 +163,6 @@
     # haskell
     hlint
     stack
-    ghc
     cabal2nix
     cabal-install
 
