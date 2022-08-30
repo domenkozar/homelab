@@ -161,7 +161,7 @@
     gdb
 
     # haskell
-    haskellPackages.hlint
+    hlint
     stack
     ghc
     cabal2nix
