@@ -152,6 +152,7 @@
 
     # development
     nix-prefetch-scripts
+    nix-diff
     cachix
     direnv
     shellcheck
