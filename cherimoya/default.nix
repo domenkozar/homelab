@@ -129,8 +129,6 @@
     patchelf
     unetbootin
     gcc
-    # https://github.com/matejc/tarman/issues/24
-    # pythonPackages.tarman
     sysstat
     speedtest-cli
     mosh
@@ -209,11 +207,8 @@
     #pgadmin
 
     # python stuff
-    #python27Full
-    #python33
-    python3Full
-    #python27Packages.virtualenv
-    #python36Packages.virtualenv
+    python3
+    #python3Packages.virtualenv
 
     # unfree
     signal-desktop
