@@ -271,6 +271,7 @@
     # optimize battery
     tlp.enable = true;
     blueman.enable = true;
+    earlyoom.enable = true;
 
     # auto set timezone
     localtime.enable = true;
