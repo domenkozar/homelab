@@ -2,11 +2,11 @@
   "nodes": {
     "cachix": {
       "locked": {
-        "lastModified": 1662565447,
-        "narHash": "sha256-KUoLVzCZkbVDq9ybZO3/4sXi7XQUrxIO2rEACq7LrrQ=",
+        "lastModified": 1663970066,
+        "narHash": "sha256-T8vXuwJMH4bCSpLbvxLQzk15sJ/dGH36AFwrm6vyrn4=",
         "owner": "cachix",
         "repo": "cachix",
-        "rev": "645a361d9f4cec47aed94ec7ebae5c83cde627b2",
+        "rev": "66953e094884bf15b5078c1f0214c3a08a8eeaca",
         "type": "github"
       },
       "original": {
@@ -82,16 +82,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1663244735,
-        "narHash": "sha256-+EukKkeAx6ithOLM1u5x4D12ZFuoi6vpPYjhNDmLz1o=",
+        "lastModified": 1664011383,
+        "narHash": "sha256-ZwqmG+oyUnC1jfnHEcTk82D3xjlMRLe19Eh6G670CJA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "178fea1414ae708a5704490f4c49ec3320be9815",
+        "rev": "29a89385c30c13d8cebaad1404ee1035c28e62d9",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-22.05",
+        "ref": "22.05-piperwire",
         "repo": "nixpkgs",
         "type": "github"
       }
