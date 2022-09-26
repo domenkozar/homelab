@@ -61,6 +61,7 @@
   nix = {
    buildCores = 0;
    maxJobs = 4;
+   nixPath = lib.mkForce [];
    trustedUsers = [ "root" "@wheel" ];
    extraOptions = ''
      narinfo-cache-negative-ttl = 0
