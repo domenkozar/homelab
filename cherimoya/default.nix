@@ -61,6 +61,8 @@
   nix = {
    buildCores = 0;
    maxJobs = 4;
+   # nix build --print-out-paths
+   package = pkgs.nixVersions.nix_2_9;
    nixPath = lib.mkForce [];
    trustedUsers = [ "root" "@wheel" ];
    extraOptions = ''
