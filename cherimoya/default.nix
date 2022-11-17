@@ -75,6 +75,7 @@
   environment.variables.TERM = "xterm-256color";
   programs.bash.enableCompletion = true;
   programs.autojump.enable = true;
+  programs.starship.enable = true;
 
   users.users.domen = {
     isNormalUser = true;
@@ -86,11 +87,6 @@
 
   environment.interactiveShellInit = ''
     export PATH="$HOME/bin:$PATH"
-
-    parse_git_branch() {
-        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/on \1/'
-    }
-    PS1="$PS1\[\e[0;33;49m\]\$(parse_git_branch)\[\e[0;0m\]\n$ "
 
     eval "$(direnv hook bash)"
 
