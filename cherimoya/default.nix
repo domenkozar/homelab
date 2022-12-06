@@ -180,7 +180,6 @@
     pa_applet
     dunst  # notifications
     arandr
-    xvidcap # screenrecording
     escrotum
     geeqie
     networkmanagerapplet
