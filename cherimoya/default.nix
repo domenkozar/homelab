@@ -272,7 +272,7 @@
     earlyoom.enable = true;
 
     # auto set timezone
-    localtime.enable = true;
+    #localtime.enable = true;
 
     cachix-agent.enable = true;
 
