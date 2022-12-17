@@ -257,10 +257,6 @@
   systemd.enableUnifiedCgroupHierarchy = false;
 
   location.provider = "geoclue2";
-
-  # 21.11 requires this to be set
-  users.users.localtimed.group = "localtimed";
-  users.groups.localtimed = {};
  
   services = {
     locate.enable = true;
