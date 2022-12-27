@@ -150,22 +150,10 @@
     patray
 
     # development
-    nix-prefetch-scripts
     nix-diff
     cachix
     direnv
-    shellcheck
-    terraform
     gdb
-
-    # haskell
-    hlint
-    stack
-    cabal2nix
-    cabal-install
-
-    # elm
-    elm2nix
 
     # X apps
     dmenu
