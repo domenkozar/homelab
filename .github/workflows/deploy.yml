@@ -25,4 +25,4 @@ jobs:
           CACHIX_ACTIVATE_TOKEN: "${{ secrets.CACHIX_ACTIVATE_TOKEN }}"
         run: |
           cachix push domenkozar-private ./result
-          cachix deploy activate ./result
+          cachix deploy activate --agent cherimoya ./result
