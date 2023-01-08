@@ -115,7 +115,6 @@
     gitAndTools.git-crypt
     tree
     #anki
-    sqlite-interactive
     sshfs-fuse
     sshuttle
     fuse
@@ -128,8 +127,6 @@
     gcc
     sysstat
     speedtest-cli
-    mosh
-    ngrok
     mtpfs
     lsof
 
@@ -169,10 +166,7 @@
     escrotum
     geeqie
     networkmanagerapplet
-    vlc
     evince
-    #skype
-    #wine
 
     # e-residency
     #qdigidoc
@@ -187,9 +181,6 @@
     #teeworlds
     #xonotic
     #steam
-
-    # postgresql
-    #pgadmin
 
     # python stuff
     python3
@@ -232,7 +223,7 @@
   # TODO: need to hash the password
   #users.mutableUsers = false;
 
-  system.stateVersion = "21.05";
+  system.stateVersion = "22.11";
 
   # TODO: usb backup auto play
 
