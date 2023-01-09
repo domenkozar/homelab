@@ -116,18 +116,14 @@
     tree
     #anki
     sshfs-fuse
-    sshuttle
     fuse
     jwhois
     dos2unix
     gnumake
-    libevent
     patchelf
-    unetbootin
     gcc
     sysstat
     speedtest-cli
-    mtpfs
     lsof
 
     # sys tools
