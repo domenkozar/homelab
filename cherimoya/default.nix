@@ -16,6 +16,9 @@
   networking.hostName = "cherimoya";
   networking.networkmanager.enable = true;
   networking.nameservers = ["1.1.1.1"];
+  networking.extraHosts = ''
+   127.0.0.1 cachix app.cachix test.cachix
+  '';
 
   systemd.coredump.extraConfig = ''
     ExternalSizeMax=8G
