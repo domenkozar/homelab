@@ -168,10 +168,6 @@
     networkmanagerapplet
     evince
 
-    # e-residency
-    #qdigidoc
-    web-eid-app
-
     # browsers
     firefox
     chromium
@@ -219,7 +215,9 @@
 
   # e-residency
   services.pcscd.enable = true;
-  services.pcscd.plugins = [ pkgs.acsccid ];
+  programs.firefox.nativeMessagingHosts.euwebid = true;
+  environment.etc."chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
+  environment.etc."opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
 
   # TODO: need to hash the password
   #users.mutableUsers = false;
