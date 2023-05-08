@@ -25,7 +25,4 @@
     { device = "/dev/disk/by-uuid/2761-EE05";
       fsType = "vfat";
     };
-
-  # high-resolution display
-  hardware.video.hidpi.enable = lib.mkDefault true;
 }
