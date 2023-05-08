@@ -170,6 +170,7 @@
 
     # e-residency
     #qdigidoc
+    web-eid-app
 
     # browsers
     firefox
