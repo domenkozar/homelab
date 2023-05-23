@@ -2,8 +2,7 @@
   description = "Cachix Deploy Agents";
 
   inputs = {
-    # switch to 23.05 once out
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     cachix.url = "github:cachix/cachix";
     cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
