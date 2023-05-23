@@ -117,7 +117,6 @@
     unzip
     jq
     psmisc
-    patray
 
     # development
     nix-diff
@@ -135,12 +134,12 @@
     p7zip
     pavucontrol
     xarchiver
-    pa_applet
     dunst  # notifications
     arandr
     escrotum
     geeqie
     networkmanagerapplet
+    patray
     evince
 
     # browsers
