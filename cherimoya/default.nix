@@ -214,6 +214,9 @@
 
   location.provider = "geoclue2";
 
+  # chromecast: https://github.com/NixOS/nixpkgs/issues/49630#issuecomment-622498732
+  services.avahi.enable = true;
+
   # See: https://github.com/NixOS/nixpkgs/issues/180175
   systemd.services.NetworkManager-wait-online.enable = false;
  
