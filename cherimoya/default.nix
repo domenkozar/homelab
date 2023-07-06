@@ -44,6 +44,7 @@
    trustedUsers = [ "root" "@wheel" ];
    extraOptions = ''
      narinfo-cache-negative-ttl = 0
+     show-trace = true
      extra-experimental-features = flakes nix-command
    '';
   };
