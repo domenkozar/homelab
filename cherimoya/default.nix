@@ -37,7 +37,7 @@
   };
 
   nix = {
-   package = pkgs.nixVersions.nix_2_15;
+   package = pkgs.nixVersions.nix_2_16;
    buildCores = 0;
    maxJobs = 4;
    nixPath = lib.mkForce [];
