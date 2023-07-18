@@ -36,6 +36,8 @@
     pulse.enable = true;
   };
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   nix = {
    package = pkgs.nixVersions.nix_2_16;
    buildCores = 0;
