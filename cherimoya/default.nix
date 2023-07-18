@@ -65,6 +65,11 @@
     shell = "/run/current-system/sw/bin/bash";
   };
 
+  # to allow building github runners
+  nixpkgs.config.permittedInsecurePackages = [
+    "nodejs-16.20.1"
+  ];
+
   environment.interactiveShellInit = ''
     export PATH="$HOME/bin:$PATH"
 
