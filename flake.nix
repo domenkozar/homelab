@@ -3,12 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
-    nixos-hardware.url = "github:nixos/nixos-hardware";
     cachix.url = "github:cachix/cachix";
     cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, cachix, cachix-deploy-flake }:
+  outputs = { self, nixpkgs, cachix, cachix-deploy-flake }:
     let
       system = "x86_64-linux";
       pkgs = import "${nixpkgs}" {
@@ -23,8 +22,9 @@
           cherimoya = cachix-deploy-lib.nixos {
             imports = [
               ./cherimoya 
-              (nixos-hardware + "/lenovo/thinkpad/p14s/amd/gen2") 
             ];
+            # https://github.com/NixOS/nixos-hardware/blob/master/lenovo/thinkpad/p14s/amd/gen2/default.nix
+            boot.kernelParams = [ "amdgpu.backlight=0" ];
             services.cachix-agent.package = cachix.packages.${system}.cachix;
           };
         };
