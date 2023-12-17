@@ -11,6 +11,8 @@
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
+  # prevent /boot from filling in
+  boot.loader.grub.configurationLimit = 10;
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_6;
 
