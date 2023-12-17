@@ -65,11 +65,6 @@
     shell = "/run/current-system/sw/bin/bash";
   };
 
-  # to allow building github runners
-  nixpkgs.config.permittedInsecurePackages = [
-    "nodejs-16.20.1"
-  ];
-
   environment.interactiveShellInit = ''
     export PATH="$HOME/bin:$PATH"
 
@@ -252,7 +247,7 @@
       paths = [ "/home/domen/dev" "/etc" "/nix/var" ];
       repository = "s3:https://s3.us-west-002.backblazeb2.com/guava-backup";
       passwordFile = "/etc/restic/password";
-      s3CredentialsFile = "/etc/restic/b2";
+      environmentFile = "/etc/restic/b2";
       initialize = true;
       timerConfig = {
         OnCalendar = "03:00";
