@@ -6,6 +6,9 @@
   "nix": {
     "enabled": true
   },
+  "schedule": [
+    "every weekend"
+  ],
   "lockFileMaintenance": {
     "enabled": true
   }
