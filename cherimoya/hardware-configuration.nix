@@ -17,14 +17,14 @@
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_6;
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/40c2f90d-d172-4fdf-93d9-ce6df8679398";
+    { device = "/dev/disk/by-label/nixos";
       fsType = "btrfs";
     };
 
-  boot.initrd.luks.devices."encryptedroot".device = "/dev/disk/by-uuid/a55c1e44-e83c-4445-90e3-76e02b8ef964";
+  boot.initrd.luks.devices."encryptedroot".device = "/dev/nvme0n1p1";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2761-EE05";
+    { device = "/dev/disk/by-label/boot";
       fsType = "vfat";
     };
 }

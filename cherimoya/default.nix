@@ -40,10 +40,10 @@
 
   nix = {
    package = pkgs.nixVersions.nix_2_16;
-   buildCores = 0;
-   maxJobs = 4;
+   settomgs.build-cores = 0;
+   settings.max-jobs = 4;
+   settings.trusted-users = [ "root" "@wheel" ];
    nixPath = lib.mkForce [];
-   trustedUsers = [ "root" "@wheel" ];
    extraOptions = ''
      narinfo-cache-negative-ttl = 0
      show-trace = true
