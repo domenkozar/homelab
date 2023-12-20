@@ -23,8 +23,6 @@
             imports = [
               ./cherimoya 
             ];
-            # https://github.com/NixOS/nixos-hardware/blob/master/lenovo/thinkpad/p14s/amd/gen2/default.nix
-            boot.kernelParams = [ "amdgpu.backlight=0" ];
             services.cachix-agent.package = cachix.packages.${system}.cachix;
           };
         };

@@ -235,6 +235,9 @@
     # auto set timezone
     #localtime.enable = true;
 
+    # firmware updates
+    fwupd.enable = true;
+
     cachix-agent.enable = true;
 
     redshift = {
