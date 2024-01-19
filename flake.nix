@@ -5,9 +5,10 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
     cachix.url = "github:cachix/cachix";
     cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, cachix, cachix-deploy-flake }:
+  outputs = { self, nixpkgs, cachix, cachix-deploy-flake, nixos-hardware }:
     let
       system = "x86_64-linux";
       pkgs = import "${nixpkgs}" {
@@ -22,6 +23,7 @@
           cherimoya = cachix-deploy-lib.nixos {
             imports = [
               ./cherimoya 
+              nixos-hardware.nixosModules.lenovo-yoga-7-slim-gen8 
             ];
             services.cachix-agent.package = cachix.packages.${system}.cachix;
           };

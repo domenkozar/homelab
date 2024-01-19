@@ -40,7 +40,7 @@
 
   nix = {
    package = pkgs.nixVersions.nix_2_16;
-   settomgs.build-cores = 0;
+   settings.build-cores = 0;
    settings.max-jobs = 4;
    settings.trusted-users = [ "root" "@wheel" ];
    nixPath = lib.mkForce [];
