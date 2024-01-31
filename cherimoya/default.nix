@@ -107,6 +107,7 @@
     sysstat
     speedtest-cli
     lsof
+    htop
 
     # sys tools
     rmlint
