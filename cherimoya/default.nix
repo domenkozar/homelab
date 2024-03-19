@@ -39,8 +39,7 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   nix = {
-   package = pkgs.nixVersions.nix_2_16;
-   settings.build-cores = 0;
+   settings.build-cores = 4;
    settings.max-jobs = 4;
    settings.trusted-users = [ "root" "@wheel" ];
    nixPath = lib.mkForce [];
