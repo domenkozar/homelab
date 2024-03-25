@@ -41,7 +41,7 @@
   nix = {
    settings.build-cores = 4;
    settings.max-jobs = 4;
-   settings.trusted-users = [ "root" "@wheel" ];
+   #settings.trusted-users = [ "root" "@wheel" ];
    nixPath = lib.mkForce [];
    extraOptions = ''
      narinfo-cache-negative-ttl = 0
