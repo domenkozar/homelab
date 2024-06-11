@@ -186,7 +186,6 @@
 
   programs.ssh.startAgent = true;
   programs.gnupg.agent.enable = true;
-  programs.gnupg.agent.pinentryFlavor = "gnome3";
   # provides org.freedesktop.secrets
   services.gnome.gnome-keyring.enable = true;
 
