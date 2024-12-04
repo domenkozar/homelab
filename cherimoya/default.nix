@@ -189,6 +189,8 @@
   # provides org.freedesktop.secrets
   services.gnome.gnome-keyring.enable = true;
 
+  services.tailscale.enable = true;
+
   # e-residency
   services.pcscd.enable = true;
   programs.firefox.policies.SecurityDevices.p11-kit-proxy = "${pkgs.p11-kit}/lib/p11-kit-proxy.so";
