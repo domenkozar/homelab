@@ -107,6 +107,8 @@
     speedtest-cli
     lsof
     htop
+    # zed extensions
+    rustup
 
     # sys tools
     rmlint
