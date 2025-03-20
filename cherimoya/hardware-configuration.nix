@@ -14,7 +14,7 @@
   # prevent /boot from filling in
   boot.loader.grub.configurationLimit = 10;
 
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_10;
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_12;
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
