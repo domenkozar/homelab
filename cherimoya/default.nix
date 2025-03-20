@@ -166,7 +166,7 @@
 
     # man pages
     man-pages
-    posix_man_pages
+    man-pages-posix
 
     docker
     alsaUtils
