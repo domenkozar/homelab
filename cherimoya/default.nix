@@ -214,7 +214,6 @@
   users.extraGroups.vboxusers.members = [ "domen" ];
 
   virtualisation.docker.enable = true;
-  systemd.enableUnifiedCgroupHierarchy = false;
 
   location.provider = "geoclue2";
 
