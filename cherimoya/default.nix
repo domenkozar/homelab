@@ -169,7 +169,7 @@
     man-pages-posix
 
     docker
-    alsaUtils
+    alsa-utils
   ];
 
   services.xserver = {
