@@ -227,6 +227,7 @@
     locate.enable = true;
     upower.enable = true;
     thermald.enable = true;
+    paretosecurity.enable = true;
     # optimize battery
     tlp.enable = true;
     blueman.enable = true;
