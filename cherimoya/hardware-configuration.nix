@@ -18,7 +18,7 @@
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
-      options = [ "compress=zstd" ];
+      options = [ "compress=zstd" "space_cache=2" "noatime" "autodefrag" "ssd" "discard=async" ];
       fsType = "btrfs";
     };
 
