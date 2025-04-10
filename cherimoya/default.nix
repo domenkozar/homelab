@@ -107,6 +107,7 @@
     speedtest-cli
     lsof
     htop
+    ghostty
 
     # sys tools
     rmlint
