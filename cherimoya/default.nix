@@ -228,6 +228,7 @@
     upower.enable = true;
     thermald.enable = true;
     paretosecurity.enable = true;
+    paretosecurity.trayIcon = true;
     # optimize battery
     tlp.enable = true;
     blueman.enable = true;
