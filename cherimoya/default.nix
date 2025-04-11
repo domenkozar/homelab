@@ -89,13 +89,12 @@
     wgetpaste
     pwgen
     curl
-    vimHugeX
+    vim
     vscode
     gitFull
     gitAndTools.tig
     gitAndTools.git-crypt
     tree
-    #anki
     sshfs-fuse
     fuse
     jwhois
@@ -107,7 +106,7 @@
     speedtest-cli
     lsof
     htop
-    ghostty
+
 
     # sys tools
     rmlint
@@ -117,6 +116,7 @@
     wget
     nmap
     ncdu
+    imagemagick
     inetutils
     unzip
     jq
@@ -128,15 +128,13 @@
     direnv
     gdb
 
-    # X apps
+    # desktop
+    ghostty
+    pwvucontrol 
     dmenu
     i3status
     i3lock
-    imagemagick
-    i3minator
     # TODO: make it a floating window so it's not annoying
-    p7zip
-    pavucontrol
     xarchiver
     dunst  # notifications
     arandr
@@ -144,22 +142,11 @@
     geeqie
     networkmanagerapplet
     patray
-    evince
+    evince # pdf
 
     # browsers
     firefox
     chromium
-
-    # games
-    #spring
-    #springLobby
-    #teeworlds
-    #xonotic
-    #steam
-
-    # python stuff
-    python3
-    #python3Packages.virtualenv
 
     # unfree
     signal-desktop
