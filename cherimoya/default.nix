@@ -31,17 +31,21 @@
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
     pulse.enable = true;
   };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   nix = {
-   settings.build-cores = 4;
-   settings.max-jobs = 4;
-   settings.trusted-users = [ "root" "@wheel" ];
+   settings = {
+     build-cores = 4;
+     max-jobs = 4;
+     trusted-users = [ "root" "@wheel" ];
+   };
    nixPath = lib.mkForce [];
    extraOptions = ''
      narinfo-cache-negative-ttl = 0
@@ -50,11 +54,10 @@
    '';
   };
 
-  environment.variables.EDITOR = lib.mkOverride 0 "vim";
-  environment.variables.TERM = "xterm-256color";
-  programs.bash.enableCompletion = true;
-  programs.autojump.enable = true;
-  programs.starship.enable = true;
+  environment.variables = {
+    EDITOR = lib.mkOverride 0 "vim";
+    TERM = "xterm-256color";
+  };
 
   users.users.domen = {
     isNormalUser = true;
@@ -166,13 +169,22 @@
     libinput.enable = true;
     windowManager.i3.enable = true;
     desktopManager.xfce.enable = true;
-    displayManager.lightdm.enable = true;
-    displayManager.autoLogin.enable = true;
-    displayManager.autoLogin.user = "domen";
+    displayManager = {
+      lightdm.enable = true;
+      autoLogin = {
+        enable = true;
+        user = "domen";
+      };
+    };
   };
 
-  programs.ssh.startAgent = true;
-  programs.gnupg.agent.enable = true;
+  programs = {
+    ssh.startAgent = true;
+    gnupg.agent.enable = true;
+    bash.enableCompletion = true;
+    autojump.enable = true;
+    starship.enable = true;
+  };
   # provides org.freedesktop.secrets
   services.gnome.gnome-keyring.enable = true;
 
@@ -211,30 +223,35 @@
   systemd.services.NetworkManager-wait-online.enable = false;
  
   services = {
+    # Basic system services
     locate.enable = true;
     upower.enable = true;
     thermald.enable = true;
-    paretosecurity.enable = true;
-    paretosecurity.trayIcon = true;
-    # optimize battery
-    tlp.enable = true;
-    blueman.enable = true;
     earlyoom.enable = true;
-
-    # auto set timezone
-    #localtime.enable = true;
-
-    # firmware updates
-    fwupd.enable = true;
-
+    fwupd.enable = true; # firmware updates
+    blueman.enable = true;
+    tlp.enable = true; # optimize battery
+    #localtime.enable = true; # auto set timezone
+    
+    # Security services
+    paretosecurity = {
+      enable = true;
+      trayIcon = true;
+    };
+    
+    # Application services
     cachix-agent.enable = true;
-
+    
+    # Display/environment services
     redshift = {
       enable = true;
-      temperature.day = 5700;
-      temperature.night = 4600;
+      temperature = {
+        day = 5700;
+        night = 4600;
+      };
     };
-
+    
+    # Backup services
     restic.backups.full = {
       paths = [ "/home/domen/dev" "/etc" "/nix/var" ];
       repository = "s3:https://s3.us-west-002.backblazeb2.com/guava-backup";
