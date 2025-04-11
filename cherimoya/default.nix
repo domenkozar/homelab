@@ -85,79 +85,78 @@
   '';
 
   environment.systemPackages = with pkgs; [
-    # generally useful tools
-    wgetpaste
-    pwgen
+    # CLI utilities
     curl
-    vim
-    vscode
-    gitFull
-    gitAndTools.tig
-    gitAndTools.git-crypt
-    tree
-    sshfs-fuse
-    fuse
-    jwhois
     dos2unix
-    gnumake
-    patchelf
-    gcc
-    sysstat
-    speedtest-cli
-    lsof
     htop
-
-
-    # sys tools
-    rmlint
-    extundelete
-    hdparm
-    tmux
-    wget
-    nmap
+    jq
+    lsof
     ncdu
+    nmap
+    psmisc
+    pwgen
+    speedtest-cli
+    tmux
+    tree
+    unzip
+    wget
+    wgetpaste
+
+    # System tools
+    alsa-utils
+    extundelete
+    fuse
+    hdparm
     imagemagick
     inetutils
-    unzip
-    jq
-    psmisc
+    rmlint
+    sshfs-fuse
+    sysstat
 
-    # development
-    nix-diff
+    # Development
     cachix
     direnv
     gdb
+    gcc
+    gitAndTools.git-crypt
+    gitAndTools.tig
+    gitFull
+    gnumake
+    nix-diff
+    patchelf
 
-    # desktop
-    ghostty
-    pwvucontrol 
-    dmenu
-    i3status
-    i3lock
-    # TODO: make it a floating window so it's not annoying
-    xarchiver
-    dunst  # notifications
+    # Desktop environment
     arandr
+    dmenu
+    dunst
     escrotum
+    evince
     geeqie
+    ghostty
+    i3lock
+    i3status
     networkmanagerapplet
     patray
-    evince # pdf
+    pwvucontrol
+    vim
+    vscode
+    xarchiver
 
-    # browsers
-    firefox
+    # Browsers
     chromium
+    firefox
 
-    # unfree
-    signal-desktop
-    zoom-us
+    # Virtualization
+    docker
 
-    # man pages
+    # Documentation
+    jwhois
     man-pages
     man-pages-posix
 
-    docker
-    alsa-utils
+    # Unfree software
+    signal-desktop
+    zoom-us
   ];
 
   services.xserver = {
