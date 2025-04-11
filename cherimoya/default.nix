@@ -9,6 +9,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time.timeZone = "Atlantic/Canary";
@@ -38,7 +39,6 @@
     pulse.enable = true;
   };
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   nix = {
    settings = {
