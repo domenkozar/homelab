@@ -10,6 +10,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  # Graphical boot process.
+  boot.plymouth.enable = true;
   
   # Enable hugepages
   boot.kernelParams = [ "hugepages=1024" ];
