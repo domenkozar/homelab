@@ -10,6 +10,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  
+  # Enable hugepages
+  boot.kernelParams = [ "hugepages=1024" ];
+  boot.kernel.sysctl = {
+    "vm.nr_hugepages" = 1024;
+  };
 
   # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time.timeZone = "Atlantic/Canary";
