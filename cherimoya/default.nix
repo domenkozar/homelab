@@ -107,6 +107,7 @@
     nmap
     psmisc
     pwgen
+    ripgrep
     speedtest-cli
     tmux
     tree
