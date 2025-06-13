@@ -104,6 +104,7 @@
     jq
     lsof
     ncdu
+    gh
     nmap
     psmisc
     pwgen
