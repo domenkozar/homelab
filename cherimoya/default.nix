@@ -21,7 +21,7 @@
   };
 
   # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time.timeZone = "Atlantic/Canary";
+  time.timeZone = "America/Bogota";
 
   networking.hostName = "cherimoya";
   networking.networkmanager.enable = true;
