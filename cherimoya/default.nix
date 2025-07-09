@@ -138,6 +138,7 @@
     gnumake
     nix-diff
     patchelf
+    lastpass-cli
 
     # Desktop environment
     arandr
