@@ -139,6 +139,7 @@
     nix-diff
     patchelf
     lastpass-cli
+    _1password-cli
 
     # Desktop environment
     arandr
