@@ -140,6 +140,8 @@
     patchelf
     lastpass-cli
     _1password-cli
+    asciinema
+    asciinema-agg
 
     # Desktop environment
     arandr
