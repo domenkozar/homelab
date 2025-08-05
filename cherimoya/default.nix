@@ -54,7 +54,6 @@
      build-cores = 4;
      max-jobs = 4;
      trusted-users = [ "root" "@wheel" ];
-     sync-store-paths = true;
    };
    nixPath = lib.mkForce [];
    extraOptions = ''
