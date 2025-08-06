@@ -4,6 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./desktop.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -144,18 +145,9 @@
     asciinema-agg
 
     # Desktop environment
-    arandr
-    dmenu
-    dunst
-    escrotum
-    evince
-    geeqie
     ghostty
-    i3lock
-    i3status
     networkmanagerapplet
     patray
-    pwvucontrol
     vim
     vscode
     xarchiver
@@ -177,21 +169,8 @@
     zoom-us
   ];
 
-  services.xserver = {
-    enable = true;
-    autorun = true;
-    videoDrivers = [ "amdgpu" ];
-    libinput.enable = true;
-    windowManager.i3.enable = true;
-    desktopManager.xfce.enable = true;
-    displayManager = {
-      lightdm.enable = true;
-      autoLogin = {
-        enable = true;
-        user = "domen";
-      };
-    };
-  };
+  hardware.opengl.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   programs = {
     ssh.startAgent = true;
