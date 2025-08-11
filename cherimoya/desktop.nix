@@ -5,14 +5,14 @@
   programs.waybar.enable = true;
   security.polkit.enable = true;
 
-  programs.niri.settings.environment.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # TODO: https://github.com/YaLTeR/niri/blob/main/wiki/Example-systemd-Setup.md
 
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [ ];
   };
 
   fonts.packages = with pkgs; [
