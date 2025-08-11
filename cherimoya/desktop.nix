@@ -5,7 +5,7 @@
   programs.waybar.enable = true;
   security.polkit.enable = true;
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  programs.niri.settings.environment.NIXOS_OZONE_WL = "1";
 
   # TODO: https://github.com/YaLTeR/niri/blob/main/wiki/Example-systemd-Setup.md
 
