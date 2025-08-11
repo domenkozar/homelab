@@ -20,19 +20,19 @@
     noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
-    swaylock
-    swayidle
-    swaybg
     fira-code
     fira-code-symbols
-    fuzzel
-    mako # notification daemon
     font-awesome
     nerd-fonts.fira-code
     nerd-fonts.droid-sans-mono
   ];
 
   environment.systemPackages = with pkgs; [
+    swaylock
+    swayidle
+    swaybg
+    fuzzel # launcher
+    mako # notification daemon
     ghostty
     wl-clipboard
     wlr-randr
