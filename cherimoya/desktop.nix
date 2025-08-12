@@ -51,7 +51,8 @@
     wdisplays
     # quickshell bits
     kdePackages.qt5compat
-    pkgs.libsForQt5.qt5.qtgraphicaleffects
+    libsForQt5.qt5.qtgraphicaleffects
+    libsForQt5.qt5.qtdeclarative
   ];
 
   services.greetd = {
