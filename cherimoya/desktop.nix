@@ -50,10 +50,6 @@
     playerctl
     pavucontrol
     wdisplays
-    # quickshell bits
-    kdePackages.qt5compat
-    qt6.qtgraphicaleffects
-    qt6.qtdeclarative
   ];
 
   services.greetd = {
