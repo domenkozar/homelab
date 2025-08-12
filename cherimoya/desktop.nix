@@ -41,7 +41,6 @@
     wlr-randr
     grim
     slurp
-    kdePackages.qt5compat
     wallust
     cliphist
     swappy
@@ -50,6 +49,9 @@
     playerctl
     pavucontrol
     wdisplays
+    # quickshell bits
+    kdePackages.qt5compat
+    pkgs.libsForQt5.qt5.qtgraphicaleffects
   ];
 
   services.greetd = {
