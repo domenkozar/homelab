@@ -11,7 +11,18 @@
     rev = "main";
     hash = "sha256-PNWyYHxbE81scI9b12JAbXX3jwo6ukm6bqgIHuzoSjM=";
   };
-  environment.sessionVariables.QML_IMPORT_PATH = "${pkgs.kdePackages.qt5compat}/lib/qt-6/qml";
+  environment.sessionVariables.QML_IMPORT_PATH = lib.makeSearchPath "lib/qt-6/qml" [
+    pkgs.kdePackages.qt5compat
+    pkgs.kdePackages.qtbase
+    pkgs.kdePackages.qtdeclarative
+    pkgs.kdePackages.qtmultimedia
+  ];
+  environment.sessionVariables.FONTCONFIG_FILE = pkgs.makeFontsConf {
+    fontDirectories = [
+      pkgs.material-symbols
+      pkgs.nerd-fonts.caskaydia-mono
+    ];
+  };
 
   # TODO: https://github.com/YaLTeR/niri/blob/main/wiki/Example-systemd-Setup.md
 
