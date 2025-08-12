@@ -5,7 +5,7 @@
   security.polkit.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables.QUICKSHELL_CONFIG = pkgs.fetchFromGitHub {
+  environment.sessionVariables.QS_CONFIG_PATH = pkgs.fetchFromGitHub {
     owner = "Amadoabad";
     repo = "Shellado";
     rev = "main";
