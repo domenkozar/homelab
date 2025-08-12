@@ -169,13 +169,13 @@
     zoom-us
   ];
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   programs = {
     ssh.startAgent = true;
     gnupg.agent.enable = true;
-    bash.enableCompletion = true;
+    bash.completion.enable = true;
     autojump.enable = true;
     starship.enable = true;
   };
