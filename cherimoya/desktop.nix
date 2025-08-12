@@ -11,6 +11,7 @@
     rev = "main";
     hash = "sha256-PNWyYHxbE81scI9b12JAbXX3jwo6ukm6bqgIHuzoSjM=";
   };
+  environment.sessionVariables.QML_IMPORT_PATH = "${pkgs.kdePackages.qt5compat}/lib/qt-6/qml";
 
   # TODO: https://github.com/YaLTeR/niri/blob/main/wiki/Example-systemd-Setup.md
 
