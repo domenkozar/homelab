@@ -2,10 +2,15 @@
 
 {
   programs.niri.enable = true;
-  programs.waybar.enable = true;
   security.polkit.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.QUICKSHELL_CONFIG = pkgs.fetchFromGitHub {
+    owner = "Amadoabad";
+    repo = "Shellado";
+    rev = "main";
+    hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+  };
 
   # TODO: https://github.com/YaLTeR/niri/blob/main/wiki/Example-systemd-Setup.md
 
@@ -36,6 +41,8 @@
     wlr-randr
     grim
     slurp
+    wallust
+    cliphist
     swappy
     kanshi
     brightnessctl
