@@ -5,12 +5,15 @@
   security.polkit.enable = true;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables.QS_CONFIG_PATH = pkgs.fetchFromGitHub {
+  environment.sessionVariables.QS_CONFIG_PATH = (pkgs.fetchFromGitHub {
     owner = "Amadoabad";
     repo = "Shellado";
     rev = "main";
     hash = "sha256-PNWyYHxbE81scI9b12JAbXX3jwo6ukm6bqgIHuzoSjM=";
-  };
+    postFetch = ''
+      patchShebangs $out
+    '';
+  });
   environment.sessionVariables.QML_IMPORT_PATH = lib.makeSearchPath "lib/qt-6/qml" [
     pkgs.kdePackages.qt5compat
     pkgs.kdePackages.qtbase
