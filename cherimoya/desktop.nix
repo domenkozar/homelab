@@ -41,6 +41,7 @@
     wlr-randr
     grim
     slurp
+    kdePackages.qt5compat
     wallust
     cliphist
     swappy
