@@ -1,6 +1,11 @@
 { config, pkgs, lib, ... }:
 
 {
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+  };
+  
   programs.niri.enable = true;
   security.polkit.enable = true;
 
