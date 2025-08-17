@@ -3,6 +3,7 @@
 {
   stylix = {
     enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/ocean.yaml";
   };
   
   programs.niri.enable = true;
