@@ -12,7 +12,7 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.initrd.kernelModules = [ "amdgpu" ];
   # prevent /boot from filling in
-  boot.loader.grub.configurationLimit = 8;
+  boot.loader.systemd-boot.configurationLimit = 10;
 
   boot.kernelPackages = lib.mkForce pkgs.linuxPackages_6_16;
 
