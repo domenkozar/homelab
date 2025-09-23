@@ -21,8 +21,6 @@
     "vm.nr_hugepages" = 1024;
   };
 
-  # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time.timeZone = "Atlantic/Canary";
 
   networking.hostName = "cherimoya";
   networking.networkmanager.enable = true;
@@ -211,6 +209,8 @@
   # detect location and timezone
   location.provider = "geoclue2";
   services.automatic-timezoned.enable = true;
+  # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  # time.timeZone = "Atlantic/Canary";
 
   # chromecast: https://github.com/NixOS/nixpkgs/issues/49630#issuecomment-622498732
   services.avahi.enable = true;
