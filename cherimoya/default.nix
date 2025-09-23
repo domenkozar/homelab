@@ -208,7 +208,9 @@
 
   virtualisation.docker.enable = true;
 
+  # detect location and timezone
   location.provider = "geoclue2";
+  services.automatic-timezoned.enable = true;
 
   # chromecast: https://github.com/NixOS/nixpkgs/issues/49630#issuecomment-622498732
   services.avahi.enable = true;
@@ -225,8 +227,7 @@
     fwupd.enable = true; # firmware updates
     blueman.enable = true;
     tlp.enable = true; # optimize battery
-    #localtime.enable = true; # auto set timezone
-    
+
     # Security services
     paretosecurity = {
       enable = true;
@@ -235,15 +236,6 @@
     
     # Application services
     cachix-agent.enable = true;
-    
-    # Display/environment services
-    redshift = {
-      enable = true;
-      temperature = {
-        day = 5700;
-        night = 4600;
-      };
-    };
     
     # Backup services
     restic.backups.full = {
