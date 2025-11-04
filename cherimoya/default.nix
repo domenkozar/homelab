@@ -47,6 +47,9 @@
     pulse.enable = true;
   };
 
+  # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/4875
+  systemd.user.services.pipewire.environment.PULSE_LATENCY_MSEC = "60";
+  systemd.user.services.pipewire-pulse.environment.PULSE_LATENCY_MSEC = "60";
 
   nix = {
    settings = {
