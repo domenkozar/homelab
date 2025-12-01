@@ -5,6 +5,7 @@
     [
       ./hardware-configuration.nix
       ./desktop.nix
+      ./oo7.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -134,8 +135,8 @@
     direnv
     gdb
     gcc
-    gitAndTools.git-crypt
-    gitAndTools.tig
+    git-crypt
+    tig
     gitFull
     gnumake
     nix-diff
@@ -180,8 +181,7 @@
     autojump.enable = true;
     starship.enable = true;
   };
-  # provides org.freedesktop.secrets
-  services.gnome.gnome-keyring.enable = true;
+  services.gnome.gcr-ssh-agent.enable = false;
 
   services.tailscale.enable = true;
 
