@@ -153,6 +153,7 @@
     vim
     vscode
     xarchiver
+    redland-wayland
 
     # Browsers
     chromium
