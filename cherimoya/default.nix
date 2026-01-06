@@ -54,7 +54,7 @@
 
   nix = {
    settings = {
-     build-cores = 4;
+     cores = 4;
      max-jobs = 4;
      trusted-users = [ "root" "@wheel" ];
    };
