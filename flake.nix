@@ -9,9 +9,10 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     stylix.url = "github:nix-community/stylix/release-25.11";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
+    ghostty.url = "github:ghostty-org/ghostty";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, cachix, cachix-deploy-flake, nixos-hardware, stylix }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, cachix, cachix-deploy-flake, nixos-hardware, stylix, ghostty }:
     let
       system = "x86_64-linux";
       pkgs = import "${nixpkgs}" {
@@ -29,7 +30,10 @@
               stylix.nixosModules.stylix
               nixos-hardware.nixosModules.lenovo-yoga-7-slim-gen8 
             ];
-            environment.systemPackages = [ nixpkgs-unstable.legacyPackages.${system}.quickshell ];
+            environment.systemPackages = [
+              nixpkgs-unstable.legacyPackages.${system}.quickshell
+              ghostty.packages.${system}.default
+            ];
             services.cachix-agent.package = cachix.packages.${system}.cachix;
           };
         };

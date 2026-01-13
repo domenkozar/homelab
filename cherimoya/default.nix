@@ -147,7 +147,6 @@
     asciinema-agg
 
     # Desktop environment
-    ghostty
     networkmanagerapplet
     patray
     vim

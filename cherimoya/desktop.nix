@@ -57,7 +57,6 @@
     swaybg
     fuzzel # launcher
     mako # notification daemon
-    ghostty
     wl-clipboard
     wlr-randr
     grim
