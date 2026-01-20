@@ -17,7 +17,8 @@
   boot.plymouth.enable = true;
   
   # Enable hugepages
-  boot.kernelParams = [ "hugepages=1024" ];
+  # Disable Panel Self Refresh to fix green screen on USB-C monitor
+  boot.kernelParams = [ "hugepages=1024" "amdgpu.dcdebugmask=0x10" ];
   boot.kernel.sysctl = {
     "vm.nr_hugepages" = 1024;
   };
