@@ -17,8 +17,12 @@
   boot.plymouth.enable = true;
   
   # Enable hugepages
-  # Disable Panel Self Refresh to fix green screen on USB-C monitor
-  boot.kernelParams = [ "hugepages=1024" "amdgpu.dcdebugmask=0x10" ];
+  # Disable Panel Self Refresh and improve USB-C monitor stability
+  boot.kernelParams = [
+    "hugepages=1024"
+    "amdgpu.dcdebugmask=0x10"  # disable PSR
+    "amdgpu.abmlevel=0"        # disable Adaptive Backlight Management
+  ];
   boot.kernel.sysctl = {
     "vm.nr_hugepages" = 1024;
   };
@@ -230,7 +234,14 @@
     earlyoom.enable = true;
     fwupd.enable = true; # firmware updates
     blueman.enable = true;
-    tlp.enable = true; # optimize battery
+    # optimize battery, but don't interfere with USB-C power delivery
+    tlp = {
+      enable = true;
+      settings = {
+        # Disable USB autosuspend to fix USB-C charging issues
+        USB_AUTOSUSPEND = 0;
+      };
+    };
 
     # Security services
     paretosecurity = {
