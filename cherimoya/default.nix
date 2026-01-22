@@ -220,6 +220,25 @@
   # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   # time.timeZone = "Atlantic/Canary";
 
+  # Allow geoclue to access wpa_supplicant for WiFi-based geolocation
+  services.dbus.packages = [
+    (pkgs.writeTextFile {
+      name = "geoclue-wpa-dbus-policy";
+      text = ''
+        <!DOCTYPE busconfig PUBLIC
+          "-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN"
+          "http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd">
+        <busconfig>
+          <policy user="geoclue">
+            <allow send_destination="fi.w1.wpa_supplicant1"/>
+            <allow receive_sender="fi.w1.wpa_supplicant1"/>
+          </policy>
+        </busconfig>
+      '';
+      destination = "/share/dbus-1/system.d/geoclue-wpa.conf";
+    })
+  ];
+
   # chromecast: https://github.com/NixOS/nixpkgs/issues/49630#issuecomment-622498732
   services.avahi.enable = true;
 
