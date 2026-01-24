@@ -20,8 +20,11 @@
   # Disable Panel Self Refresh and improve USB-C monitor stability
   boot.kernelParams = [
     "hugepages=1024"
-    "amdgpu.dcdebugmask=0x10"  # disable PSR
-    "amdgpu.abmlevel=0"        # disable Adaptive Backlight Management
+    "amdgpu.dcdebugmask=0x610"  # disable PSR, PSR-SU, and Panel Replay
+    "amdgpu.dcfeaturemask=0x0"  # disable all DC features
+    "amdgpu.abmlevel=0"         # disable Adaptive Backlight Management
+    "amdgpu.sg_display=0"       # disable scatter/gather display
+    "amdgpu.freesync_video=0"   # disable freesync/VRR
   ];
   boot.kernel.sysctl = {
     "vm.nr_hugepages" = 1024;
