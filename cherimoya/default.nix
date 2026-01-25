@@ -176,16 +176,18 @@
 
   # WORKAROUND: Downgrade DMCUB firmware to fix USB-C monitor DPCD read errors
   # See: https://gitlab.freedesktop.org/drm/amd/-/issues/3913
-  # This fetches older dcn_3_1_4_dmcub.bin and places it before current firmware
+  # Patch linux-firmware to replace the broken dcn_3_1_4_dmcub.bin with older version
   hardware.firmware = let
-    oldDmcubFirmware = pkgs.runCommand "old-dmcub-firmware" {} ''
-      mkdir -p $out/lib/firmware/amdgpu
-      cp ${pkgs.fetchurl {
-        url = "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/amdgpu/dcn_3_1_4_dmcub.bin?h=20241210";
-        hash = "sha256-kwgGljDiT5KB4Fo+SS9VB2AdBE1yN409lp0/XTxTfLo=";
-      }} $out/lib/firmware/amdgpu/dcn_3_1_4_dmcub.bin
-    '';
-  in lib.mkBefore [ oldDmcubFirmware ];
+    oldDmcubBin = pkgs.fetchurl {
+      url = "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/amdgpu/dcn_3_1_4_dmcub.bin?h=20241210";
+      hash = "sha256-kwgGljDiT5KB4Fo+SS9VB2AdBE1yN409lp0/XTxTfLo=";
+    };
+    patchedLinuxFirmware = pkgs.linux-firmware.overrideAttrs (old: {
+      postInstall = (old.postInstall or "") + ''
+        cp ${oldDmcubBin} $out/lib/firmware/amdgpu/dcn_3_1_4_dmcub.bin
+      '';
+    });
+  in lib.mkForce [ patchedLinuxFirmware ];
 
   programs = {
     ssh.startAgent = true;
