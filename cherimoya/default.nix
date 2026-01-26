@@ -22,6 +22,13 @@
     "vm.nr_hugepages" = 1024;
   };
 
+  # Fix USB-C monitor link training failure caused by broken LTTPR
+  # See: https://gitlab.freedesktop.org/drm/amd/-/issues/3913
+  boot.kernelPatches = [{
+    name = "amdgpu-lttpr-fallback";
+    patch = ./amdgpu-lttpr-fallback.patch;
+  }];
+
 
   networking.hostName = "cherimoya";
   networking.networkmanager.enable = true;
