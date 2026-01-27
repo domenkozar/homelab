@@ -18,6 +18,34 @@ index 7bdb7905e91a..e5a8f3c12d01 100644
  	/* By reading LTTPR capability, RX assumes that we will enable
  	 * LTTPR extended aux timeout if LTTPR is present.
  	 */
+diff --git a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training_dpia.c b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training_dpia.c
+index 603537ffd128..a1b2c3d4e5f6 100644
+--- a/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training_dpia.c
++++ b/drivers/gpu/drm/amd/display/dc/link/protocols/link_dp_training_dpia.c
+@@ -1034,8 +1034,21 @@ enum link_training_result dpia_perform_link_training(
+ 	 */
+ 	if (result == LINK_TRAINING_SUCCESS) {
+-		fsleep(5000);
+-		if (!link->skip_fallback_on_link_loss)
++		/*
++		 * USB4 tunnelling adds latency that can cause interlane
++		 * alignment to appear momentarily lost right after training
++		 * completes.  Use a longer settle time and retry once before
++		 * declaring link loss, which would trigger an unnecessary
++		 * fallback to a lower link rate.
++		 */
++		fsleep(20000);
++		if (!link->skip_fallback_on_link_loss) {
+ 			result = dp_check_link_loss_status(link, &lt_settings);
++			if (result == LINK_TRAINING_LINK_LOSS) {
++				fsleep(50000);
++				result = dp_check_link_loss_status(link,
++								   &lt_settings);
++			}
++		}
+ 	} else if (result == LINK_TRAINING_ABORT)
+ 		dpia_training_abort(link, &lt_settings, repeater_id);
+ 	else
 diff --git a/drivers/gpu/drm/amd/display/dc/resource/dcn314/dcn314_resource.c b/drivers/gpu/drm/amd/display/dc/resource/dcn314/dcn314_resource.c
 index 4f32229a2e67..b6d1c8e3a0f1 100644
 --- a/drivers/gpu/drm/amd/display/dc/resource/dcn314/dcn314_resource.c
