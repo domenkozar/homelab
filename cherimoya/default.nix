@@ -25,8 +25,8 @@
   # Fix USB-C monitor link training failure caused by broken LTTPR
   # See: https://gitlab.freedesktop.org/drm/amd/-/issues/3913
   boot.kernelPatches = [{
-    name = "amdgpu-lttpr-fallback";
-    patch = ./amdgpu-lttpr-fallback.patch;
+    name = "amdgpu-skip-lttpr-dcn314";
+    patch = ./amdgpu-skip-lttpr-dcn314.patch;
   }];
 
 
