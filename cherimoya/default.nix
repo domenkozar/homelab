@@ -28,6 +28,12 @@
     "vm.nr_hugepages" = 1024;
   };
 
+  # Skip LTTPR on DCN 3.1.4 to avoid unreliable AUX channel through USB-C repeater
+  # See: https://gitlab.freedesktop.org/drm/amd/-/issues/3913
+  boot.kernelPatches = [{
+    name = "amdgpu-skip-lttpr-dcn314";
+    patch = ./amdgpu-skip-lttpr-dcn314.patch;
+  }];
 
   networking.hostName = "cherimoya";
   networking.networkmanager.enable = true;
