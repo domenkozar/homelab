@@ -45,7 +45,21 @@ Link rate values: `0x06`=RBR (1.62G), `0x0a`=HBR (2.7G), `0x14`=HBR2 (5.4G), `0x
 
 If current link rate < reported, the driver couldn't train at full speed. Repeated `link_encoder_enable`/`link_encoder_disable` cycles in dmesg confirm failed training attempts.
 
-**Fix:** `amdgpu.forcelongtraining=1` forces full training patterns (TPS1-TPS4) instead of abbreviated, which succeeds over USB4 tunneling.
+**Fix:** Both are needed:
+1. Kernel patch to skip LTTPR (`lttpr_mode_override = LTTPR_MODE_NON_LTTPR`) — bypasses the broken USB-C repeater
+2. `amdgpu.forcelongtraining=1` — forces full training patterns (TPS1-TPS4) instead of abbreviated
+
+### LTTPR repeater issues
+
+```
+is_lttpr_present = 1
+lttpr_mode_override chose LTTPR_MODE = 2
+REG_WAIT taking a while: 2ms in get_channel_status
+```
+
+If you see LTTPR mode 2 (non-transparent) and many slow `REG_WAIT` messages (~32 per training), the AUX channel is routing through the broken USB-C repeater. Each transaction takes ~2ms instead of microseconds.
+
+**Fix:** Kernel patch sets `lttpr_mode_override = LTTPR_MODE_NON_LTTPR` for DCN 3.1.4, skipping the repeater entirely. See `cherimoya/amdgpu-skip-lttpr-dcn314.patch`.
 
 ### EDID read failure
 

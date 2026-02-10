@@ -28,11 +28,11 @@
     "vm.nr_hugepages" = 1024;
   };
 
-  # Skip LTTPR on DCN 3.1.4 to avoid unreliable AUX channel through USB-C repeater
-  # See: https://gitlab.freedesktop.org/drm/amd/-/issues/3913
+  # Retry DP/DPIA training before fallback and try a local non-LTTPR retry on LTTPR loss.
+  # This keeps behavior bounded and avoids setting a global LTTPR override default.
   boot.kernelPatches = [{
-    name = "amdgpu-skip-lttpr-dcn314";
-    patch = ./amdgpu-skip-lttpr-dcn314.patch;
+    name = "amdgpu-dpia-link-training-retry";
+    patch = ./amdgpu-dpia-link-training-retry.patch;
   }];
 
   networking.hostName = "cherimoya";
@@ -185,21 +185,6 @@
 
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
-
-  # WORKAROUND: Downgrade DMCUB firmware to fix USB-C monitor DPCD read errors
-  # See: https://gitlab.freedesktop.org/drm/amd/-/issues/3913
-  # Patch linux-firmware to replace the broken dcn_3_1_4_dmcub.bin with older version
-  hardware.firmware = let
-    oldDmcubBin = pkgs.fetchurl {
-      url = "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/plain/amdgpu/dcn_3_1_4_dmcub.bin?h=20241210";
-      hash = "sha256-kwgGljDiT5KB4Fo+SS9VB2AdBE1yN409lp0/XTxTfLo=";
-    };
-    patchedLinuxFirmware = pkgs.linux-firmware.overrideAttrs (old: {
-      postInstall = (old.postInstall or "") + ''
-        cp ${oldDmcubBin} $out/lib/firmware/amdgpu/dcn_3_1_4_dmcub.bin
-      '';
-    });
-  in lib.mkForce [ patchedLinuxFirmware ];
 
   programs = {
     ssh.startAgent = true;

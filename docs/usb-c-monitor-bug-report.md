@@ -17,11 +17,15 @@ When connecting a 4K monitor via USB-C DisplayPort Alt Mode, the display shows a
 
 ## Root Cause
 
-Two independent issues contribute to the failure:
+Three independent issues contribute to the failure:
 
 1. **DMCUB firmware regression** (fixed) — newer DMCUB firmware (0x08005700) causes AUX channel failures, preventing DPCD and EDID reads. Fixed by downgrading to 20241210 version (0x08004800).
 
-2. **Link training rate fallback** (fixed) — with abbreviated link training, the USB-C DP Alt Mode path fails to train at HBR2. The driver attempts HBR2/HBR3, fails ~14 times (enable/disable cycles over ~1.5s), and settles at HBR (2.7 Gbps/lane). At HBR, 4 lanes provide only 8.64 Gbps effective bandwidth — not enough for 4K@60 RGB 8-bpc (~12 Gbps). Fixed by forcing full link training (`amdgpu.forcelongtraining=1`).
+2. **Unreliable LTTPR repeater** (fixed) — the USB-C DP Alt Mode path contains an LTTPR (Link Training Tunable PHY Repeater) with an unreliable AUX channel. Each AUX transaction takes ~2ms through the repeater (32+ slow reads per training attempt = ~64ms overhead). The VBIOS forces LTTPR_MODE_NON_TRANSPARENT (mode 2), routing all traffic through this broken repeater. Fixed by kernel patch that sets `lttpr_mode_override = LTTPR_MODE_NON_LTTPR` for DCN 3.1.4, bypassing the repeater entirely.
+
+3. **Link training rate fallback** (fixed) — even with LTTPR skipped, abbreviated link training can still fail at HBR2 over USB4 tunneling. The driver falls back to HBR (2.7 Gbps/lane), providing only 8.64 Gbps — not enough for 4K@60 RGB 8-bpc (~12 Gbps). Fixed by `amdgpu.forcelongtraining=1` which forces full training patterns (TPS1-TPS4).
+
+All three fixes are required. Testing showed: DMCUB downgrade alone fixes DPCD/EDID reads but not training. LTTPR skip alone improves reliability but still intermittently fails (~1 in 4 plugs). `forcelongtraining` alone still routes through the broken LTTPR. Only the combination of all three produces reliable 4K@60 RGB.
 
 ## Symptoms
 
@@ -64,10 +68,11 @@ Reported: 4 lanes  0x14 (HBR2=5.4Gbps)   ← monitor supports this
 
 ## Fix Applied
 
-Two workarounds in NixOS config (`cherimoya/default.nix`):
+Three workarounds in NixOS config (`cherimoya/default.nix`):
 
 1. **DMCUB firmware downgrade** — replace `dcn_3_1_4_dmcub.bin` with version from linux-firmware 20241210
-2. **Force full link training** — `amdgpu.forcelongtraining=1` kernel parameter, ensures HBR2 link training succeeds instead of falling back to HBR
+2. **Kernel patch: skip LTTPR on DCN 3.1.4** — bypasses the unreliable USB-C repeater, avoids slow AUX channel and intermittent training failures
+3. **Force full link training** — `amdgpu.forcelongtraining=1` kernel parameter, ensures HBR2 link training succeeds instead of falling back to HBR
 
 ## Workarounds Tested
 
@@ -77,8 +82,9 @@ Two workarounds in NixOS config (`cherimoya/default.nix`):
 | Lower resolution (2560x1440) | Works — fits within HBR bandwidth |
 | HDMI connection | Works — bypasses USB-C DP Alt path |
 | Downgrade DMCUB firmware to 20241210 | Fixes DPCD/EDID reads, but link training still falls back |
-| Kernel patch: skip LTTPR on DCN 3.1.4 | Fixes LTTPR issues but not link rate fallback |
-| `amdgpu.forcelongtraining=1` | **Fixes link training at HBR2** |
+| Kernel patch: skip LTTPR on DCN 3.1.4 | Fixes LTTPR issues, still intermittent (~1 in 4) without forcelongtraining |
+| `amdgpu.forcelongtraining=1` alone | Improves training but LTTPR still causes failures (~1 in 4) |
+| **All three fixes combined** | **Reliable 4K@60 RGB** |
 | Force HBR2 via debugfs (`echo "4 0x14"`) | Confirms HBR2 works when forced |
 
 ## Related Issues
