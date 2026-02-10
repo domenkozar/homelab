@@ -17,17 +17,16 @@
   boot.plymouth.enable = true;
   
   # Enable hugepages
-  boot.kernelParams = [ "hugepages=1024" ];
+  boot.kernelParams = [
+    "hugepages=1024"
+    # Force full DP link training to fix USB-C monitor training at HBR2
+    # Without this, link training falls back to HBR (2.7 Gbps) instead of
+    # HBR2 (5.4 Gbps), causing 4K@60 to degrade to YUV422 6-bpc (green screen)
+    "amdgpu.forcelongtraining=1"
+  ];
   boot.kernel.sysctl = {
     "vm.nr_hugepages" = 1024;
   };
-
-  # Fix USB-C monitor link training failure caused by broken LTTPR
-  # See: https://gitlab.freedesktop.org/drm/amd/-/issues/3913
-  boot.kernelPatches = [{
-    name = "amdgpu-skip-lttpr-dcn314";
-    patch = ./amdgpu-skip-lttpr-dcn314.patch;
-  }];
 
 
   networking.hostName = "cherimoya";
