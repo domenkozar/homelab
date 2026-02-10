@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     cachix.url = "github:cachix/cachix";
     cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -12,7 +11,7 @@
     ghostty.url = "github:ghostty-org/ghostty";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, cachix, cachix-deploy-flake, nixos-hardware, stylix, ghostty }:
+  outputs = { self, nixpkgs, cachix, cachix-deploy-flake, nixos-hardware, stylix, ghostty }:
     let
       system = "x86_64-linux";
       pkgs = import "${nixpkgs}" {
@@ -31,7 +30,7 @@
               nixos-hardware.nixosModules.lenovo-yoga-7-slim-gen8 
             ];
             environment.systemPackages = [
-              nixpkgs-unstable.legacyPackages.${system}.quickshell
+              pkgs.quickshell
               ghostty.packages.${system}.default
             ];
             services.cachix-agent.package = cachix.packages.${system}.cachix;
