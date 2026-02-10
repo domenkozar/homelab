@@ -10,7 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: sudo rm -rf /opt&
+      - uses: jlumbroso/free-disk-space@54081f138730dfa15788a46383842cd2f914a1be # v0.3.1
+        with:
+          tool-cache: true
+          swap-storage: false
       - uses: actions/checkout@v6
       - uses: cachix/install-nix-action@4e002c8ec80594ecd40e759629461e26c8abed15 # v31
       - uses: cachix/cachix-action@v16
