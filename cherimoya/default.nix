@@ -28,12 +28,18 @@
     "vm.nr_hugepages" = 1024;
   };
 
-  # Retry DP/DPIA training before fallback and try a local non-LTTPR retry on LTTPR loss.
-  # This keeps behavior bounded and avoids setting a global LTTPR override default.
-  boot.kernelPatches = [{
-    name = "amdgpu-dpia-link-training-retry";
-    patch = ./amdgpu-dpia-link-training-retry.patch;
-  }];
+  # Skip LTTPR on DCN 3.1.4 to avoid unreliable AUX channel through USB-C repeater,
+  # and retry DPIA link training before falling back to a lower rate.
+  boot.kernelPatches = [
+    {
+      name = "amdgpu-skip-lttpr-dcn314";
+      patch = ./amdgpu-skip-lttpr-dcn314.patch;
+    }
+    {
+      name = "amdgpu-dpia-link-training-retry";
+      patch = ./amdgpu-dpia-link-training-retry.patch;
+    }
+  ];
 
   networking.hostName = "cherimoya";
   networking.networkmanager.enable = true;
