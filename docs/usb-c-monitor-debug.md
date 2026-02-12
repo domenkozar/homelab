@@ -46,7 +46,7 @@ Link rate values: `0x06`=RBR (1.62G), `0x0a`=HBR2 (5.4G), `0x14`=HBR3 (8.1G)
 If current link rate < reported, the driver couldn't train at full speed. Repeated `link_encoder_enable`/`link_encoder_disable` cycles in dmesg confirm failed training attempts.
 
 **Fix:** Two kernel patches (see `cherimoya/default.nix`):
-1. `amdgpu-dpia-same-rate-retry` — retries DPIA link training at the same rate before falling back (e.g. gives HBR3 a second chance instead of immediately dropping to HBR2)
+1. `amdgpu-dpia-same-rate-retry` — retries DPIA link training up to 3 times at the same rate before falling back (e.g. gives HBR3 multiple chances instead of immediately dropping to HBR2)
 2. `amdgpu-dpia-link-training-retry` — retries on post-training link loss and falls back to non-LTTPR mode if the repeater keeps failing
 
 ### LTTPR repeater issues
@@ -59,7 +59,7 @@ REG_WAIT taking a while: 2ms in get_channel_status
 
 If you see LTTPR mode 2 (non-transparent) and many slow `REG_WAIT` messages (~32 per training), the AUX channel is routing through the USB-C repeater. Training is intermittent — often succeeds on the second or third attempt.
 
-**Fix:** The `amdgpu-dpia-same-rate-retry` patch retries at the same link rate before falling back, and `amdgpu-dpia-link-training-retry` falls back to non-LTTPR mode if the repeater keeps causing link loss. See `cherimoya/default.nix`.
+**Fix:** The `amdgpu-dpia-same-rate-retry` patch retries up to 3 times at the same link rate before falling back, and `amdgpu-dpia-link-training-retry` falls back to non-LTTPR mode if the repeater keeps causing link loss. See `cherimoya/default.nix`.
 
 ### EDID read failure
 
@@ -159,6 +159,7 @@ HBR2 = 4 lanes × 5.4 Gbps × 0.8 (8b/10b) = 17.28 Gbps effective
 | Skip LTTPR + `amdgpu.forcelongtraining=1` | Same as above | Longer training patterns don't help if the repeater isn't being trained at all |
 | Skip LTTPR + DPIA post-LT link loss retry | Same as above | Retry logic doesn't help when the root cause is HBR2 bandwidth limit |
 | DPIA post-LT link loss retry alone | Green screen intermittently | Only retries on post-training link loss, not on initial CR/EQ failure at HBR3 |
+| DPIA same-rate retry (1 attempt) | Green screen less often | 1 retry not always enough — HBR3 sometimes needs 2-3 attempts through the LTTPR repeater |
 | DSC (Display Stream Compression) | N/A | Samsung monitor doesn't advertise DSC support over DP |
 
 ## Known Issues
