@@ -35,19 +35,19 @@ cat /sys/kernel/debug/dri/0/DP-1/link_settings
 ```
 
 ```
-Current:  4  0x0a  0     ← HBR (2.7 Gbps) = too slow for 4K@60 RGB
-Reported: 4  0x14  16    ← HBR2 (5.4 Gbps) = what monitor supports
+Current:  4  0x0a  0     ← HBR2 (5.4 Gbps) = too slow for 4K@60 RGB 10bpc
+Reported: 4  0x14  16    ← HBR3 (8.1 Gbps) = what monitor supports
 ```
 
-Link rate values: `0x06`=RBR (1.62G), `0x0a`=HBR (2.7G), `0x14`=HBR2 (5.4G), `0x1e`=HBR3 (8.1G)
+Link rate values: `0x06`=RBR (1.62G), `0x0a`=HBR2 (5.4G), `0x14`=HBR3 (8.1G)
 
 ### Green screen = link trained too slow
 
 If current link rate < reported, the driver couldn't train at full speed. Repeated `link_encoder_enable`/`link_encoder_disable` cycles in dmesg confirm failed training attempts.
 
-**Fix:** Both are needed:
-1. Kernel patch to skip LTTPR (`lttpr_mode_override = LTTPR_MODE_NON_LTTPR`) — bypasses the broken USB-C repeater
-2. `amdgpu.forcelongtraining=1` — forces full training patterns (TPS1-TPS4) instead of abbreviated
+**Fix:** Two kernel patches (see `cherimoya/default.nix`):
+1. `amdgpu-dpia-same-rate-retry` — retries DPIA link training at the same rate before falling back (e.g. gives HBR3 a second chance instead of immediately dropping to HBR2)
+2. `amdgpu-dpia-link-training-retry` — retries on post-training link loss and falls back to non-LTTPR mode if the repeater keeps failing
 
 ### LTTPR repeater issues
 
@@ -57,9 +57,9 @@ lttpr_mode_override chose LTTPR_MODE = 2
 REG_WAIT taking a while: 2ms in get_channel_status
 ```
 
-If you see LTTPR mode 2 (non-transparent) and many slow `REG_WAIT` messages (~32 per training), the AUX channel is routing through the broken USB-C repeater. Each transaction takes ~2ms instead of microseconds.
+If you see LTTPR mode 2 (non-transparent) and many slow `REG_WAIT` messages (~32 per training), the AUX channel is routing through the USB-C repeater. Training is intermittent — often succeeds on the second or third attempt.
 
-**Fix:** Kernel patch sets `lttpr_mode_override = LTTPR_MODE_NON_LTTPR` for DCN 3.1.4, skipping the repeater entirely. See `cherimoya/amdgpu-skip-lttpr-dcn314.patch`.
+**Fix:** The `amdgpu-dpia-same-rate-retry` patch retries at the same link rate before falling back, and `amdgpu-dpia-link-training-retry` falls back to non-LTTPR mode if the repeater keeps causing link loss. See `cherimoya/default.nix`.
 
 ### EDID read failure
 
@@ -130,7 +130,7 @@ wlr-randr --output DP-1 --mode 3840x2160@30
 
 | Parameter | Effect |
 |-----------|--------|
-| `amdgpu.forcelongtraining=1` | **Fix: force full DP link training** |
+| `amdgpu.forcelongtraining=1` | Force full DP link training (TPS1-TPS4) |
 | `amdgpu.dcdebugmask=0x10` | Disable PSR |
 | `amdgpu.dcdebugmask=0x610` | Disable PSR, PSR-SU, Panel Replay |
 | `amdgpu.dcfeaturemask=0x0` | Disable all DC features (including DSC!) |
@@ -150,6 +150,16 @@ wlr-randr --output DP-1 --mode 3840x2160@30
 
 HBR = 4 lanes × 2.7 Gbps × 0.8 (8b/10b) = 8.64 Gbps effective
 HBR2 = 4 lanes × 5.4 Gbps × 0.8 (8b/10b) = 17.28 Gbps effective
+
+## Approaches Tried (didn't work)
+
+| Approach | Result | Why it failed |
+|----------|--------|---------------|
+| Skip LTTPR entirely (`lttpr_mode_override = LTTPR_MODE_NON_LTTPR` in DCN 3.1.4 debug defaults) | No green screen, but YUV422 6-bpc | Repeater needs LTTPR training to sustain HBR3; without it link falls back to HBR2, not enough bandwidth for RGB |
+| Skip LTTPR + `amdgpu.forcelongtraining=1` | Same as above | Longer training patterns don't help if the repeater isn't being trained at all |
+| Skip LTTPR + DPIA post-LT link loss retry | Same as above | Retry logic doesn't help when the root cause is HBR2 bandwidth limit |
+| DPIA post-LT link loss retry alone | Green screen intermittently | Only retries on post-training link loss, not on initial CR/EQ failure at HBR3 |
+| DSC (Display Stream Compression) | N/A | Samsung monitor doesn't advertise DSC support over DP |
 
 ## Known Issues
 

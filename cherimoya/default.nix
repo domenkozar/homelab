@@ -28,12 +28,13 @@
     "vm.nr_hugepages" = 1024;
   };
 
-  # Skip LTTPR on DCN 3.1.4 to avoid unreliable AUX channel through USB-C repeater,
-  # and retry DPIA link training before falling back to a lower rate.
+  # USB-C monitor link training fixes:
+  # 1. Retry at same link rate before falling back (avoids unnecessary HBR3→HBR2 drop)
+  # 2. Retry on post-training link loss and fall back to non-LTTPR on repeater failure
   boot.kernelPatches = [
     {
-      name = "amdgpu-skip-lttpr-dcn314";
-      patch = ./amdgpu-skip-lttpr-dcn314.patch;
+      name = "amdgpu-dpia-same-rate-retry";
+      patch = ./amdgpu-dpia-same-rate-retry.patch;
     }
     {
       name = "amdgpu-dpia-link-training-retry";
