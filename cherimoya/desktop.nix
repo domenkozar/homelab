@@ -69,6 +69,7 @@
     playerctl
     pavucontrol
     wdisplays
+    imv
   ];
 
   services.greetd = {
