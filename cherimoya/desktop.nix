@@ -1,5 +1,13 @@
 { config, pkgs, lib, ... }:
 
+let
+  chromium' = pkgs.chromium.override {
+    commandLineArgs = [
+      "--ozone-platform=wayland"
+      "--enable-features=UseOzonePlatform"
+    ];
+  };
+in
 {
   stylix = {
     enable = true;
@@ -33,7 +41,63 @@
     ];
   };
 
-  # TODO: https://github.com/YaLTeR/niri/blob/main/wiki/Example-systemd-Setup.md
+  systemd.user.services = {
+    quickshell = {
+      description = "Quickshell status bar";
+      partOf = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      serviceConfig = {
+        ExecStart = lib.getExe pkgs.quickshell;
+        Restart = "on-failure";
+        RestartSec = 5;
+      };
+    };
+    chromium = {
+      description = "Chromium browser";
+      partOf = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      serviceConfig = {
+        ExecStart = lib.getExe chromium';
+        Restart = "on-failure";
+        RestartSec = 5;
+      };
+    };
+    mako = {
+      description = "Mako notification daemon";
+      partOf = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      serviceConfig = {
+        ExecStart = lib.getExe pkgs.mako;
+        Restart = "on-failure";
+        RestartSec = 5;
+      };
+    };
+    nm-applet = {
+      description = "NetworkManager applet";
+      partOf = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      serviceConfig = {
+        ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet";
+        Restart = "on-failure";
+        RestartSec = 5;
+      };
+    };
+    redland = {
+      description = "Redland";
+      partOf = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "graphical-session.target" ];
+      serviceConfig = {
+        ExecStart = lib.getExe pkgs.redland-wayland;
+        Restart = "on-failure";
+        RestartSec = 5;
+      };
+    };
+  };
 
   xdg.portal = {
     enable = true;
@@ -46,12 +110,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    (chromium.override {
-      commandLineArgs = [
-        "--ozone-platform=wayland"
-        "--enable-features=UseOzonePlatform"
-      ];
-    })
+    chromium'
     swaylock
     swayidle
     swaybg
@@ -76,7 +135,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
         user = "greeter";
       };
     };

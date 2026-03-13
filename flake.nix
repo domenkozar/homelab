@@ -33,6 +33,17 @@
               pkgs.quickshell
               ghostty.packages.${system}.default
             ];
+            systemd.user.services.ghostty = {
+              description = "Ghostty terminal";
+              partOf = [ "graphical-session.target" ];
+              after = [ "graphical-session.target" ];
+              wantedBy = [ "graphical-session.target" ];
+              serviceConfig = {
+                ExecStart = "${ghostty.packages.${system}.default}/bin/ghostty";
+                Restart = "on-failure";
+                RestartSec = 5;
+              };
+            };
             services.cachix-agent.package = cachix.packages.${system}.cachix;
           };
         };
