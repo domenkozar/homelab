@@ -264,7 +264,10 @@
     locate.enable = true;
     upower.enable = true;
     thermald.enable = true;
-    earlyoom.enable = true;
+    earlyoom = {
+      enable = true;
+      extraArgs = [ "--avoid" "(ghostty|claude-code-bun)" ];
+    };
     fwupd.enable = true; # firmware updates
     blueman.enable = true;
     tlp.enable = true; # optimize battery
