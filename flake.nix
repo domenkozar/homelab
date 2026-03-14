@@ -8,7 +8,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     stylix.url = "github:nix-community/stylix/release-25.11";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
-    ghostty.url = "github:ghostty-org/ghostty";
+    ghostty.url = "github:ghostty-org/ghostty/v1.3.1";
   };
 
   outputs = { self, nixpkgs, cachix, cachix-deploy-flake, nixos-hardware, stylix, ghostty }:
