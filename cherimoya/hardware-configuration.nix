@@ -22,6 +22,8 @@
       fsType = "btrfs";
     };
 
+  # TODO: recreate LUKS with --sector-size 4096 to match NVMe native sector size
+  # current 512-byte sectors cause read-modify-write amplification
   boot.initrd.luks.devices."encryptedroot".device = "/dev/nvme0n1p1";
 
   fileSystems."/boot" =
