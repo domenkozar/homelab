@@ -24,7 +24,12 @@
 
   # TODO: recreate LUKS with --sector-size 4096 to match NVMe native sector size
   # current 512-byte sectors cause read-modify-write amplification
-  boot.initrd.luks.devices."encryptedroot".device = "/dev/nvme0n1p1";
+  boot.initrd.luks.devices."encryptedroot" = {
+    device = "/dev/nvme0n1p1";
+    # bypass dm-crypt workqueues to reduce scheduling overhead on NVMe
+    # improves random I/O latency by running encryption inline instead of queuing
+    bypassWorkqueues = true;
+  };
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-label/boot";
