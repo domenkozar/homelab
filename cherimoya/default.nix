@@ -58,8 +58,12 @@
   # Enable sound.
   hardware.bluetooth = {
     enable = true;
-    # required for LE Audio (BAP/ISO) and LC3 codec support
-    settings.General.Experimental = true;
+    settings.General = {
+      # required for LE Audio (BAP/ISO) and LC3 codec support
+      Experimental = true;
+      # enables ISO socket for LE Audio transport
+      KernelExperimental = "6fbaf188-05e0-496a-9885-d6ddfdb4e03e";
+    };
   };
   security.rtkit.enable = true;
   services.pipewire = {
