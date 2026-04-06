@@ -196,6 +196,7 @@
 
     # Unfree software
     signal-desktop
+    whatsapp-electron
     zoom-us
   ];
 
