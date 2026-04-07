@@ -109,7 +109,7 @@
   environment.interactiveShellInit = ''
     export PATH="$HOME/bin:$PATH"
 
-    eval "$(direnv hook bash)"
+    eval "$(devenv hook bash)"
 
     # append history instead of overwrite
     shopt -s histappend
