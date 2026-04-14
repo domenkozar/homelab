@@ -42,8 +42,18 @@
     }
   ];
 
+  # Realtek RTL8852CE (rtw89_8852ce) stability workaround. The in-tree driver
+  # drops EAPOL frames during roams while in power-save, producing
+  # Reason 15 = 4WAY_HANDSHAKE_TIMEOUT, and ASPM L1/L1SS transitions trip
+  # firmware errors on Lenovo BIOSes.
+  boot.extraModprobeConfig = ''
+    options rtw89_core disable_ps_mode=y
+    options rtw89_pci  disable_aspm_l1=y disable_aspm_l1ss=y
+  '';
+
   networking.hostName = "cherimoya";
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.powersave = false;
   networking.nameservers = ["1.1.1.1"];
   networking.extraHosts = ''
    127.0.0.1 cachix app.cachix test.cachix
