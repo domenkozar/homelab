@@ -276,7 +276,6 @@
     };
     fwupd.enable = true; # firmware updates
     blueman.enable = true;
-    tlp.enable = true; # optimize battery
 
     # Security services
     paretosecurity = {
