@@ -185,7 +185,6 @@
     asciinema-agg
 
     # Desktop environment
-    networkmanagerapplet
     patray
     vim
     vscode
@@ -275,7 +274,6 @@
       extraArgs = [ "--avoid" "(ghostty|claude-code-bun)" ];
     };
     fwupd.enable = true; # firmware updates
-    blueman.enable = true;
 
     # Security services
     paretosecurity = {

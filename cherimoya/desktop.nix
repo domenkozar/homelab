@@ -57,17 +57,6 @@ in
         RestartSec = 5;
       };
     };
-    nm-applet = {
-      description = "NetworkManager applet";
-      partOf = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      serviceConfig = {
-        ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet";
-        Restart = "on-failure";
-        RestartSec = 5;
-      };
-    };
     redland = {
       description = "Redland";
       partOf = [ "graphical-session.target" ];
