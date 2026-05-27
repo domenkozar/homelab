@@ -29,7 +29,7 @@
         config.allowUnfree = true;
         overlays = [
           (final: prev: {
-            inherit (pkgsUnstable) dgop;
+            inherit (pkgsUnstable) dgop quickshell;
           })
         ];
       };
