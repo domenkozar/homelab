@@ -11,7 +11,7 @@
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     ghostty.url = "github:ghostty-org/ghostty/v1.3.1";
     dms = {
-      url = "github:Mikilio/DankMaterialShell/master";
+      url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
