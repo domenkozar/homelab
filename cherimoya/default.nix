@@ -59,11 +59,11 @@
    127.0.0.1 cachix app.cachix test.cachix
   '';
 
-  systemd.coredump.extraConfig = ''
-    ExternalSizeMax=8G
-    ProcessSizeMax=8G
-    JournalSizeMax=8G
-  '';
+  systemd.coredump.settings.Coredump = {
+    ExternalSizeMax = "8G";
+    ProcessSizeMax = "8G";
+    JournalSizeMax = "8G";
+  };
 
   # Enable sound.
   hardware.bluetooth = {
@@ -231,7 +231,7 @@
   # e-residency
   services.pcscd.enable = true;
   programs.firefox.policies.SecurityDevices.p11-kit-proxy = "${pkgs.p11-kit}/lib/p11-kit-proxy.so";
-  programs.firefox.nativeMessagingHosts.euwebid = true;
+  programs.firefox.nativeMessagingHosts.packages = [ pkgs.web-eid-app ];
   environment.etc."chromium/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
   environment.etc."opt/chrome/native-messaging-hosts/eu.webeid.json".source = "${pkgs.web-eid-app}/share/web-eid/eu.webeid.json";
   # Tell p11-kit to load/proxy opensc-pkcs11.so, providing all available slots

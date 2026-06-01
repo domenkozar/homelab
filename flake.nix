@@ -2,8 +2,7 @@
   description = "Cachix Deploy Agents";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     cachix.url = "github:cachix/cachix";
     cachix-deploy-flake.url = "github:cachix/cachix-deploy-flake";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -16,22 +15,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, cachix, cachix-deploy-flake, nixos-hardware, stylix, ghostty, dms }:
+  outputs = { self, nixpkgs, cachix, cachix-deploy-flake, nixos-hardware, stylix, ghostty, dms }:
     let
       system = "x86_64-linux";
-      pkgsUnstable = import "${nixpkgs-unstable}" {
-        inherit system;
-        config.allowUnfree = true;
-      };
       pkgs = import "${nixpkgs}" {
         inherit system;
         # ngrok, vscode, zoom-us, signal-desktop
         config.allowUnfree = true;
-        overlays = [
-          (final: prev: {
-            inherit (pkgsUnstable) dgop quickshell;
-          })
-        ];
       };
       cachix-deploy-lib = cachix-deploy-flake.lib pkgs;
     in {
