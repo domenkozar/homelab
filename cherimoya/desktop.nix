@@ -46,17 +46,6 @@ in
         RestartSec = 5;
       };
     };
-    mako = {
-      description = "Mako notification daemon";
-      partOf = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      wantedBy = [ "graphical-session.target" ];
-      serviceConfig = {
-        ExecStart = lib.getExe pkgs.mako;
-        Restart = "on-failure";
-        RestartSec = 5;
-      };
-    };
     redland = {
       description = "Redland";
       partOf = [ "graphical-session.target" ];
@@ -86,7 +75,6 @@ in
     swayidle
     swaybg
     fuzzel # launcher
-    mako # notification daemon
     wl-clipboard
     wlr-randr
     grim
