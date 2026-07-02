@@ -26,6 +26,9 @@
   ];
   boot.kernel.sysctl = {
     "vm.nr_hugepages" = 1024;
+    # Allow devenv runner VMs (8 GB hugepage-backed) to allocate surplus
+    # hugepages on demand instead of permanently reserving them
+    "vm.nr_overcommit_hugepages" = 4096;
   };
 
   # USB-C monitor link training fixes:
