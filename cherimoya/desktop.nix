@@ -4,7 +4,10 @@ let
   chromium' = pkgs.chromium.override {
     commandLineArgs = [
       "--ozone-platform=wayland"
-      "--enable-features=UseOzonePlatform"
+      # SystemNotifications routes web notifications through the D-Bus
+      # notification daemon (DankMaterialShell) instead of Chromium drawing
+      # its own toplevel window, which niri would tile.
+      "--enable-features=UseOzonePlatform,SystemNotifications"
     ];
   };
 in
