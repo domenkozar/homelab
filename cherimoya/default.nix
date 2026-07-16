@@ -190,9 +190,7 @@
     # Desktop environment
     patray
     vim
-    vscode
     xarchiver
-    redland-wayland
 
     # Browsers
     chromium
