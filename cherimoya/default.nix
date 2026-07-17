@@ -124,14 +124,6 @@
 
     eval "$(devenv hook bash)"
 
-    # append history instead of overwrite
-    shopt -s histappend
-
-    # big history, record everything
-    export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
-    export HISTSIZE=300000
-    export HISTFILESIZE=200000
-    export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
     export BROWSER=chromium
 
     # check the window size after each command and, if necessary,
@@ -143,6 +135,7 @@
     # CLI utilities
     curl
     dos2unix
+    fd
     htop
     jq
     lsof
@@ -188,7 +181,6 @@
     asciinema-agg
 
     # Desktop environment
-    patray
     vim
     xarchiver
 
@@ -217,6 +209,10 @@
     ssh.startAgent = true;
     gnupg.agent.enable = true;
     bash.completion.enable = true;
+    atuin = {
+      enable = true;
+      enableBashIntegration = true;
+    };
     zoxide.enable = true;
     starship.enable = true;
   };
