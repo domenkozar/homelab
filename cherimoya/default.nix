@@ -129,6 +129,9 @@
     # check the window size after each command and, if necessary,
     # update the values of LINES and COLUMNS.
     shopt -s checkwinsize
+
+    # Keep this after hooks that modify PROMPT_COMMAND (notably devenv).
+    eval "$(${lib.getExe pkgs.zoxide} init bash)"
   '';
 
   environment.systemPackages = with pkgs; [
@@ -213,7 +216,11 @@
       enable = true;
       enableBashIntegration = true;
     };
-    zoxide.enable = true;
+    zoxide = {
+      enable = true;
+      # Initialized at the end of environment.interactiveShellInit above.
+      enableBashIntegration = false;
+    };
     starship.enable = true;
   };
   services.gnome.gcr-ssh-agent.enable = false;
