@@ -217,7 +217,7 @@
     ssh.startAgent = true;
     gnupg.agent.enable = true;
     bash.completion.enable = true;
-    autojump.enable = true;
+    zoxide.enable = true;
     starship.enable = true;
   };
   services.gnome.gcr-ssh-agent.enable = false;
