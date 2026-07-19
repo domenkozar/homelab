@@ -215,6 +215,7 @@
     atuin = {
       enable = true;
       enableBashIntegration = true;
+      settings.enter_accept = true;
     };
     zoxide = {
       enable = true;
