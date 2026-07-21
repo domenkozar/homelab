@@ -212,6 +212,12 @@
     ssh.startAgent = true;
     gnupg.agent.enable = true;
     bash.completion.enable = true;
+    # Atuin no longer bundles bash-preexec; without sourcing it first, the
+    # precmd/preexec hooks atuin registers never fire and no history is recorded.
+    # Fixed upstream in nixos/modules/programs/atuin.nix (mirrors home-manager's module).
+    bash.interactiveShellInit = lib.mkBefore ''
+      source ${pkgs.bash-preexec}/share/bash/bash-preexec.sh
+    '';
     atuin = {
       enable = true;
       enableBashIntegration = true;
