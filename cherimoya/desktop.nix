@@ -38,10 +38,15 @@ in
   };
 
   systemd.user.services = {
+    dms.serviceConfig = {
+      Type = lib.mkForce "dbus";
+      BusName = lib.mkForce "org.freedesktop.Notifications";
+    };
     chromium = {
       description = "Chromium browser";
       partOf = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
+      requires = [ "dms.service" ];
+      after = [ "graphical-session.target" "dms.service" ];
       wantedBy = [ "graphical-session.target" ];
       serviceConfig = {
         ExecStart = lib.getExe chromium';
