@@ -278,7 +278,14 @@
   services = {
     # Basic system services
     locate.enable = true;
-    upower.enable = true;
+    upower = {
+      enable = true;
+      usePercentageForPolicy = true;
+      percentageCritical = 10;
+      percentageAction = 5;
+      criticalPowerAction = "Suspend";
+      allowRiskyCriticalPowerAction = true;
+    };
     thermald.enable = true;
     earlyoom = {
       enable = true;
