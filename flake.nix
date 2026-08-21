@@ -14,9 +14,13 @@
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    factorseal = {
+      url = "github:domenkozar/factorseal";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, cachix, cachix-deploy-flake, nixos-hardware, stylix, ghostty, dms }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, cachix, cachix-deploy-flake, nixos-hardware, stylix, ghostty, dms, factorseal }:
     let
       system = "x86_64-linux";
       pkgs = import "${nixpkgs}" {
@@ -35,10 +39,15 @@
           cherimoya = cachix-deploy-lib.nixos {
             imports = [
               ./cherimoya
+              factorseal.nixosModules.factorseal
               stylix.nixosModules.stylix
               nixos-hardware.nixosModules.lenovo-yoga-7-slim-gen8
               dms.nixosModules.default
             ];
+            services.factorseal = {
+              enable = true;
+              users = [ "domen" ];
+            };
             environment.systemPackages = [
               ghostty.packages.${system}.default
               pkgs-unstable.herdr
