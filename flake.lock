@@ -244,6 +244,26 @@
         "type": "github"
       }
     },
+    "factorseal": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787332751,
+        "narHash": "sha256-XCikobQU8us2iT3JVYO3D/munydhMQ7OQChXvvIpWI4=",
+        "owner": "domenkozar",
+        "repo": "factorseal",
+        "rev": "9d4ce7ad668beedcea6f44ff1d61fa6dc3e392ac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "domenkozar",
+        "repo": "factorseal",
+        "type": "github"
+      }
+    },
     "firefox-gnome-theme": {
       "flake": false,
       "locked": {
@@ -805,6 +825,7 @@
         "cachix": "cachix",
         "cachix-deploy-flake": "cachix-deploy-flake",
         "dms": "dms",
+        "factorseal": "factorseal",
         "ghostty": "ghostty",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_4",

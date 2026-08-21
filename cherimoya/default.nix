@@ -115,7 +115,7 @@
     isNormalUser = true;
     createHome = true;
     home = "/home/domen";
-    extraGroups = [ "wheel" "docker" "podman" "networkmanager" ]; 
+    extraGroups = [ "wheel" "docker" "podman" "networkmanager" ];
     shell = "/run/current-system/sw/bin/bash";
   };
 
