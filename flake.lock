@@ -251,11 +251,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787349978,
-        "narHash": "sha256-Yzv3mMlQGX2qKLQwrrKb3h0vuvqNEw1P/oPeLijViI8=",
+        "lastModified": 1787350028,
+        "narHash": "sha256-SXEmnf9fd3lKh4PSII1gVbBCH8UMLdF9Pp6pXcmL63c=",
         "owner": "domenkozar",
         "repo": "factorseal",
-        "rev": "e796dc717fcb238e8fecc65e7f5f49ec1e0869b6",
+        "rev": "6303baa51c152f3e11a6bf36819ae8b47b606e3b",
         "type": "github"
       },
       "original": {
