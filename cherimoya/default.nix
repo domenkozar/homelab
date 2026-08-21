@@ -5,7 +5,6 @@
     [
       ./hardware-configuration.nix
       ./desktop.nix
-      ./oo7.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

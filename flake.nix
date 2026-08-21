@@ -15,7 +15,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     factorseal = {
-      url = "github:domenkozar/factorseal";
+      url = "github:domenkozar/factorseal/codex/secret-service";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
