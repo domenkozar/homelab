@@ -251,16 +251,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1787350028,
-        "narHash": "sha256-SXEmnf9fd3lKh4PSII1gVbBCH8UMLdF9Pp6pXcmL63c=",
+        "lastModified": 1787353793,
+        "narHash": "sha256-isxGvv317w5amuBAOyNVfPyup6qzxAi3sK2b96kUFl0=",
         "owner": "domenkozar",
         "repo": "factorseal",
-        "rev": "6303baa51c152f3e11a6bf36819ae8b47b606e3b",
+        "rev": "d32d235b9be58d12af468ccfac6da17d345f7168",
         "type": "github"
       },
       "original": {
         "owner": "domenkozar",
-        "ref": "codex/secret-service",
         "repo": "factorseal",
         "type": "github"
       }
