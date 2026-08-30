@@ -14,7 +14,7 @@
   # prevent /boot from filling in
   boot.loader.systemd-boot.configurationLimit = 7;
 
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_7_0;
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_7_2;
 
   fileSystems."/" =
     { device = "/dev/disk/by-label/nixos";
