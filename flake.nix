@@ -14,13 +14,17 @@
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    quickshell = {
+      url = "github:quickshell-mirror/quickshell/v0.3.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     factorseal = {
       url = "github:domenkozar/factorseal";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, cachix, cachix-deploy-flake, nixos-hardware, stylix, ghostty, dms, factorseal }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, cachix, cachix-deploy-flake, nixos-hardware, stylix, ghostty, dms, quickshell, factorseal }:
     let
       system = "x86_64-linux";
       pkgs = import "${nixpkgs}" {
@@ -52,6 +56,7 @@
               ghostty.packages.${system}.default
               pkgs-unstable.herdr
             ];
+            programs.dank-material-shell.quickshell.package = quickshell.packages.${system}.default;
             systemd.user.services.ghostty = {
               description = "Ghostty terminal";
               partOf = [ "graphical-session.target" ];

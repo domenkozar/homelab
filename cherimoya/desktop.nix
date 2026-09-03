@@ -41,6 +41,8 @@ in
     dms.serviceConfig = {
       Type = lib.mkForce "dbus";
       BusName = lib.mkForce "org.freedesktop.Notifications";
+      Restart = lib.mkForce "always";
+      RestartSec = 1;
     };
     chromium = {
       description = "Chromium browser";
