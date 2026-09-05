@@ -283,20 +283,18 @@
     },
     "factorseal": {
       "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1787974874,
-        "narHash": "sha256-eHrYZMlv9MeO6ps97SWR3LOhHCkr7ok7aAV5Yu43Rps=",
-        "owner": "domenkozar",
+        "lastModified": 1788641078,
+        "narHash": "sha256-KOgPZ/Fc5G/Kb2g69BhtU7NEHY2xX9iA5qCJ+J0SREI=",
+        "owner": "cachix",
         "repo": "factorseal",
-        "rev": "c8c2aef48c3b8266304257a34acf460ca6f65218",
+        "rev": "bbc5a9cf69bd2fb44037ffb9a0829f68775b2e0b",
         "type": "github"
       },
       "original": {
-        "owner": "domenkozar",
+        "owner": "cachix",
         "repo": "factorseal",
         "type": "github"
       }
@@ -466,7 +464,7 @@
       "inputs": {
         "flake-compat": "flake-compat_3",
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "systems": "systems",
         "zig": "zig",
         "zon2nix": "zon2nix"
@@ -782,6 +780,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1786599213,
+        "narHash": "sha256-yNJd40f11EzXBjSByCB7IPpeFFAdeoSKKM67dGkfFoU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "0e251e24a4f24e036a084b6b4b2d2491af4167f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1782545840,
         "narHash": "sha256-CAi8oAZaE6pTkcYQBnnOlvmfMgG/p1AO0FohKKN3J7I=",
         "rev": "3d46470bb3030020f7e1361f33514854f5bfa86d",
@@ -793,7 +807,7 @@
         "url": "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1787962033,
         "narHash": "sha256-u6z9VTZA4Kf3RkHQo9sQI7NI4Ei/uiU9vrMqOiwWP1Y=",
@@ -863,7 +877,7 @@
         "factorseal": "factorseal",
         "ghostty": "ghostty_2",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "quickshell": "quickshell",
         "stylix": "stylix"

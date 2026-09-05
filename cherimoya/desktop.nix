@@ -20,6 +20,8 @@ in
   
   programs.niri.enable = true;
   security.polkit.enable = true;
+  # Factorseal Desktop owns org.freedesktop.secrets.
+  services.gnome.gnome-keyring.enable = lib.mkForce false;
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.FONTCONFIG_FILE = pkgs.makeFontsConf {

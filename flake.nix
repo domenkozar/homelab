@@ -18,10 +18,8 @@
       url = "github:quickshell-mirror/quickshell/v0.3.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    factorseal = {
-      url = "github:domenkozar/factorseal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Desktop needs a newer Rust toolchain than the stable system Nixpkgs.
+    factorseal.url = "github:cachix/factorseal";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, cachix, cachix-deploy-flake, nixos-hardware, stylix, ghostty, dms, quickshell, factorseal }:
@@ -50,7 +48,10 @@
             ];
             services.factorseal = {
               enable = true;
+              mode = "desktop";
               users = [ "domen" ];
+              package = factorseal.packages.${system}.factorseal;
+              desktopPackage = factorseal.packages.${system}.factorseal-desktop;
             };
             environment.systemPackages = [
               ghostty.packages.${system}.default
