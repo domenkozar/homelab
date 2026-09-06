@@ -22,6 +22,11 @@
     # Without this, link training falls back to HBR (2.7 Gbps) instead of
     # HBR2 (5.4 Gbps), causing 4K@60 to degrade to YUV422 6-bpc (green screen)
     "amdgpu.forcelongtraining=1"
+    # Keep the NVMe out of its deepest autonomous power state (APST). With the
+    # kernel default (100000 us) the drive sleeps after ~100 ms idle and the
+    # next IO pays 5-65 ms of wake latency, so every interactive disk access
+    # on a mostly idle system starts cold. 5500 us allows PS0-PS3 only.
+    "nvme_core.default_ps_max_latency_us=5500"
   ];
   boot.kernel.sysctl = {
     "vm.nr_hugepages" = 1024;
