@@ -570,6 +570,26 @@
         "type": "github"
       }
     },
+    "niri-screenshare": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1787991093,
+        "narHash": "sha256-iseQAn0IwIkYSvpzIL7WPhi/gz7XPVPivuEOOV7G/nY=",
+        "owner": "pantarune",
+        "repo": "niri-screenshare",
+        "rev": "2eea02e8e16dbed1cc2bfc75c8c154bc8ff78431",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pantarune",
+        "repo": "niri-screenshare",
+        "type": "github"
+      }
+    },
     "nix": {
       "inputs": {
         "flake-compat": [
@@ -876,6 +896,7 @@
         "dms": "dms",
         "factorseal": "factorseal",
         "ghostty": "ghostty_2",
+        "niri-screenshare": "niri-screenshare",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
         "nixpkgs-unstable": "nixpkgs-unstable",

@@ -18,11 +18,15 @@
       url = "github:quickshell-mirror/quickshell/v0.3.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    niri-screenshare = {
+      url = "github:pantarune/niri-screenshare";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Desktop needs a newer Rust toolchain than the stable system Nixpkgs.
     factorseal.url = "github:cachix/factorseal";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, cachix, cachix-deploy-flake, nixos-hardware, stylix, ghostty, dms, quickshell, factorseal }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, cachix, cachix-deploy-flake, nixos-hardware, stylix, ghostty, dms, quickshell, niri-screenshare, factorseal }:
     let
       system = "x86_64-linux";
       pkgs = import "${nixpkgs}" {
@@ -35,6 +39,14 @@
         config.allowUnfree = true;
       };
       cachix-deploy-lib = cachix-deploy-flake.lib pkgs;
+      niriScreenshare = niri-screenshare.packages.${system}.default.overrideAttrs (old: {
+        # NixOS manages portal preferences. A generated user portals.conf
+        # would take precedence over the system's other portal settings.
+        postPatch = (old.postPatch or "") + ''
+          substituteInPlace src/main.rs \
+            --replace-fail '    portal_config::ensure_portals_config();' ""
+        '';
+      });
     in {
       defaultPackage."${system}" = cachix-deploy-lib.spec {
         agents = {
@@ -58,6 +70,7 @@
               pkgs-unstable.herdr
             ];
             programs.dank-material-shell.quickshell.package = quickshell.packages.${system}.default;
+            xdg.portal.extraPortals = [ niriScreenshare ];
             systemd.user.services.ghostty = {
               description = "Ghostty terminal";
               partOf = [ "graphical-session.target" ];

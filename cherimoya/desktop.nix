@@ -40,6 +40,10 @@ in
   };
 
   systemd.user.services = {
+    niri-screenshare = {
+      wantedBy = [ "graphical-session.target" ];
+      environment.NIRI_BIN = lib.getExe config.programs.niri.package;
+    };
     dms.serviceConfig = {
       Type = lib.mkForce "dbus";
       BusName = lib.mkForce "org.freedesktop.Notifications";
@@ -74,7 +78,7 @@ in
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ ];
+    config.niri."org.freedesktop.impl.portal.ScreenCast" = "niri";
   };
 
   fonts.packages = with pkgs; [
