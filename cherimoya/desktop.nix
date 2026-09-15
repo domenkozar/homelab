@@ -19,6 +19,7 @@ in
   };
   
   programs.niri.enable = true;
+  environment.etc."niri/recording.kdl".source = ./obs/recording.kdl;
   security.polkit.enable = true;
   # Factorseal Desktop owns org.freedesktop.secrets.
   services.gnome.gnome-keyring.enable = lib.mkForce false;
@@ -104,6 +105,8 @@ in
     pavucontrol
     wdisplays
     imv
+    obs-studio
+    (import ./obs/record.nix { inherit pkgs; })
   ];
 
   services.greetd = {

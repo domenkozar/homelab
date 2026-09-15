@@ -1,0 +1,5 @@
+binds {
+    Super+S repeat=false hotkey-overlay-title="Stop recording" {
+        spawn "/run/current-system/sw/bin/record" "--stop";
+    }
+}

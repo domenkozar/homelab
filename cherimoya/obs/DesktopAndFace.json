@@ -1,0 +1,144 @@
+{
+  "name": "Desktop and face",
+  "current_scene": "Desktop",
+  "current_program_scene": "Desktop",
+  "scene_order": [
+    {
+      "name": "Desktop"
+    }
+  ],
+  "sources": [
+    {
+      "name": "Desktop capture",
+      "id": "pipewire-screen-capture-source",
+      "versioned_id": "pipewire-screen-capture-source",
+      "settings": {
+        "ShowCursor": true
+      },
+      "enabled": true,
+      "muted": false,
+      "volume": 1.0,
+      "balance": 0.5,
+      "mixers": 1,
+      "sync": 0,
+      "flags": 0,
+      "hotkeys": {},
+      "monitoring_type": 0,
+      "private_settings": {}
+    },
+    {
+      "name": "Face",
+      "id": "v4l2_input",
+      "versioned_id": "v4l2_input",
+      "settings": {
+        "device_id": "/dev/v4l/by-id/usb-Azurewave_Integrated_Camera_0001-video-index0",
+        "input": -1,
+        "pixelformat": -1,
+        "resolution": -1,
+        "framerate": -1,
+        "buffering": true
+      },
+      "enabled": true,
+      "muted": false,
+      "volume": 1.0,
+      "balance": 0.5,
+      "mixers": 1,
+      "sync": 0,
+      "flags": 0,
+      "hotkeys": {},
+      "monitoring_type": 0,
+      "private_settings": {}
+    },
+    {
+      "name": "Desktop",
+      "id": "scene",
+      "versioned_id": "scene",
+      "settings": {
+        "id_counter": 2,
+        "custom_size": false,
+        "items": [
+          {
+            "name": "Desktop capture",
+            "id": 1,
+            "visible": true,
+            "locked": true,
+            "rot": 0,
+            "pos": {
+              "x": 0,
+              "y": 0
+            },
+            "scale": {
+              "x": 1,
+              "y": 1
+            },
+            "align": 5,
+            "bounds_type": 2,
+            "bounds_align": 0,
+            "bounds": {
+              "x": 1920,
+              "y": 1200
+            },
+            "crop_left": 0,
+            "crop_top": 0,
+            "crop_right": 0,
+            "crop_bottom": 0
+          },
+          {
+            "name": "Face",
+            "id": 2,
+            "visible": true,
+            "locked": true,
+            "rot": 0,
+            "pos": {
+              "x": 1512,
+              "y": 960
+            },
+            "scale": {
+              "x": 1,
+              "y": 1
+            },
+            "align": 5,
+            "bounds_type": 2,
+            "bounds_align": 0,
+            "bounds": {
+              "x": 384,
+              "y": 216
+            },
+            "crop_left": 0,
+            "crop_top": 0,
+            "crop_right": 0,
+            "crop_bottom": 0
+          }
+        ]
+      },
+      "enabled": true,
+      "muted": false,
+      "volume": 1.0,
+      "balance": 0.5,
+      "mixers": 1,
+      "sync": 0,
+      "flags": 0,
+      "hotkeys": {},
+      "monitoring_type": 0,
+      "private_settings": {}
+    }
+  ],
+  "AuxAudioDevice1": {
+    "name": "Microphone",
+    "id": "pulse_input_capture",
+    "versioned_id": "pulse_input_capture",
+    "settings": {
+      "device_id": "alsa_input.pci-0000_c3_00.6.HiFi__Mic1__source"
+    },
+    "enabled": true,
+    "muted": false,
+    "volume": 1.0,
+    "balance": 0.5,
+    "mixers": 1,
+    "sync": 0,
+    "flags": 0,
+    "hotkeys": {},
+    "monitoring_type": 0,
+    "private_settings": {}
+  }
+}
