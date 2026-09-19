@@ -168,11 +168,11 @@
     "dank-qml-common": {
       "flake": false,
       "locked": {
-        "lastModified": 1788376015,
-        "narHash": "sha256-/tT8rTznLADndTwLBzdgzzgfJH1ZhYQibYo5v/F8U+U=",
+        "lastModified": 1789768710,
+        "narHash": "sha256-bg5uT5R5rE00UsuM5zyvjJMi/y6HvhygYA2haYmjpvg=",
         "owner": "AvengeMedia",
         "repo": "dank-qml-common",
-        "rev": "26396ce432d6c71c3f5367438f96f4a8d667e160",
+        "rev": "ccab90ec90e0cdd620eadc2e1ad8b4740363472c",
         "type": "github"
       },
       "original": {
@@ -268,11 +268,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789567530,
-        "narHash": "sha256-nh4uJPAgFTfSIyag8+5CMsxO2SWVTY55TGQNZCWMTJc=",
+        "lastModified": 1789769667,
+        "narHash": "sha256-cw78AU6WbOOQ/izt8APpUESFihgO69BBBMNK46hGZpw=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "641d65cbd945300911da96ceb9ad100c7301cafc",
+        "rev": "3d1873c46eebe8549d9820286d3e6cf44dc3d386",
         "type": "github"
       },
       "original": {
@@ -286,11 +286,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1789514992,
-        "narHash": "sha256-sC2NvQLxhxthhUObrp/lyHRCcB5+Ng24fxaGm8192f0=",
+        "lastModified": 1789773473,
+        "narHash": "sha256-Q2AniMmtogq7suWMkWLEbquSnwZXYSw1d+cSiMm8bwU=",
         "owner": "cachix",
         "repo": "factorseal",
-        "rev": "4f6cbed3a7131ca5e533da3484160437fd577fae",
+        "rev": "808c21309859cb72f9d568b413d7a65e5b96fa44",
         "type": "github"
       },
       "original": {
