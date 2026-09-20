@@ -58,6 +58,8 @@ If the camera is blank, open its properties and select a supported capture mode.
 ## Delayed recording from the terminal
 
 The `record` command is included alongside OBS in the system configuration.
+In the app launcher, choose **Record desktop and face**. The separate **OBS Studio**
+entry only opens OBS and does not start recording.
 With **Tools → WebSocket Server Settings → Enable WebSocket server** enabled:
 
 ```bash
