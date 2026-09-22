@@ -15,9 +15,9 @@
   # Graphical boot process.
   boot.plymouth.enable = true;
   
-  # Enable hugepages
+  # Reserve 1 GiB using 512 hugepages of 2 MiB each.
   boot.kernelParams = [
-    "hugepages=1024"
+    "hugepages=512"
     # Force full DP link training to fix USB-C monitor training at HBR2
     # Without this, link training falls back to HBR (2.7 Gbps) instead of
     # HBR2 (5.4 Gbps), causing 4K@60 to degrade to YUV422 6-bpc (green screen)
@@ -29,7 +29,7 @@
     "nvme_core.default_ps_max_latency_us=5500"
   ];
   boot.kernel.sysctl = {
-    "vm.nr_hugepages" = 1024;
+    "vm.nr_hugepages" = 512;
     # Allow devenv runner VMs (8 GB hugepage-backed) to allocate surplus
     # hugepages on demand instead of permanently reserving them
     "vm.nr_overcommit_hugepages" = 4096;
