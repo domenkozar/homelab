@@ -146,7 +146,7 @@
     htop
     jq
     lsof
-    ncdu
+    dust
     gh
     nmap
     psmisc
