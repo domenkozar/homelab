@@ -153,7 +153,6 @@
     pwgen
     ripgrep
     speedtest-cli
-    tmux
     tree
     unzip
     wget
@@ -176,7 +175,6 @@
     gdb
     gcc
     git-crypt
-    tig
     gitFull
     gnumake
     nix-diff
