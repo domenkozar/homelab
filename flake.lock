@@ -286,11 +286,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1789773473,
-        "narHash": "sha256-Q2AniMmtogq7suWMkWLEbquSnwZXYSw1d+cSiMm8bwU=",
+        "lastModified": 1790111630,
+        "narHash": "sha256-HNhgYUUETvOYSi/nxpgoZqZN6wY0+dRSbFnf1gBP5+o=",
         "owner": "cachix",
         "repo": "factorseal",
-        "rev": "808c21309859cb72f9d568b413d7a65e5b96fa44",
+        "rev": "831aa3c1eea58187ebe7e8367fc98113e757a381",
         "type": "github"
       },
       "original": {
