@@ -139,6 +139,17 @@
     "flags": 0,
     "hotkeys": {},
     "monitoring_type": 0,
-    "private_settings": {}
+    "private_settings": {},
+    "filters": [
+      {
+        "name": "Noise suppression (RNNoise)",
+        "id": "noise_suppress_filter",
+        "versioned_id": "noise_suppress_filter_v2",
+        "enabled": true,
+        "settings": {
+          "method": "rnnoise"
+        }
+      }
+    ]
   }
 }

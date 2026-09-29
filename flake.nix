@@ -76,7 +76,19 @@
               partOf = [ "graphical-session.target" ];
               after = [ "graphical-session.target" ];
               wantedBy = [ "graphical-session.target" ];
+              # An interactive shell needs the same command paths as a Niri launch.
+              path = [
+                "/home/domen"
+                "/run/wrappers"
+                "/home/domen/.nix-profile"
+                "/nix/profile"
+                "/home/domen/.local/state/nix/profile"
+                "/etc/profiles/per-user/domen"
+                "/nix/var/nix/profiles/default"
+                "/run/current-system/sw"
+              ];
               serviceConfig = {
+                Environment = "EGL_PLATFORM=wayland";
                 ExecStart = "${ghostty.packages.${system}.default}/bin/ghostty";
                 Restart = "on-failure";
                 RestartSec = 5;

@@ -6,8 +6,8 @@ integrated colour camera, and digital microphone:
 - 1920×1200 at 30 fps, preserving the display's 16:10 aspect ratio.
 - Desktop fitted to the canvas, with the pointer visible.
 - Camera fitted inside a 384×216 box, 24 pixels from the bottom and right.
-- Digital microphone on audio track 1; desktop audio is not included.
-- H.264 software encoding, OBS's High Quality preset, AAC audio, MKV files
+- Digital microphone with RNNoise suppression on audio track 1; desktop audio is not included.
+- H.264 software encoding, OBS's High Quality preset, AAC audio, Hybrid MP4 files
   saved under `/home/domen/Videos/Recordings`.
 
 The camera uses its stable `/dev/v4l/by-id` path and current capture mode.
@@ -93,7 +93,8 @@ It opens no terminal or OBS window and shows no notification.
 The binding is installed in `/etc/niri/recording.kdl`, included by the
 main niri config. Its repository copy is `cherimoya/obs/recording.kdl`.
 
-For MP4 delivery, use **File → Remux Recordings** in OBS.
+New recordings save directly as MP4. Older MKV files can be converted using
+**File → Remux Recordings** in OBS.
 
 ## Development checks
 
