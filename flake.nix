@@ -71,6 +71,12 @@
             ];
             programs.dank-material-shell.quickshell.package = quickshell.packages.${system}.default;
             xdg.portal.extraPortals = [ niriScreenshare ];
+            # Desktop launchers use Ghostty's upstream D-Bus activation unit.
+            # It needs the same EGL platform as the existing Ghostty service.
+            systemd.user.services."app-com.mitchellh.ghostty" = {
+              overrideStrategy = "asDropin";
+              environment.EGL_PLATFORM = "wayland";
+            };
             systemd.user.services.ghostty = {
               description = "Ghostty terminal";
               partOf = [ "graphical-session.target" ];
