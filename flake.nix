@@ -39,6 +39,19 @@
         config.allowUnfree = true;
       };
       cachix-deploy-lib = cachix-deploy-flake.lib pkgs;
+      ghosttyWayland = pkgs.symlinkJoin {
+        name = "ghostty-wayland";
+        paths = [ ghostty.packages.${system}.default ];
+        postBuild = ''
+          desktopFile="$out/share/applications/com.mitchellh.ghostty.desktop"
+          # Copy before editing, since symlinkJoin links to the upstream file.
+          cp --remove-destination "${ghostty.packages.${system}.default}/share/applications/com.mitchellh.ghostty.desktop" "$desktopFile"
+          # Cover both the main launcher and its New Window action.
+          substituteInPlace "$desktopFile" \
+            --replace-fail 'Exec=${ghostty.packages.${system}.default}/bin/ghostty ' \
+              'Exec=${pkgs.coreutils}/bin/env EGL_PLATFORM=wayland ${ghostty.packages.${system}.default}/bin/ghostty '
+        '';
+      };
       niriScreenshare = niri-screenshare.packages.${system}.default.overrideAttrs (old: {
         # NixOS manages portal preferences. A generated user portals.conf
         # would take precedence over the system's other portal settings.
@@ -48,6 +61,7 @@
         '';
       });
     in {
+      packages.${system}.ghostty-wayland = ghosttyWayland;
       defaultPackage."${system}" = cachix-deploy-lib.spec {
         agents = {
           cherimoya = cachix-deploy-lib.nixos {
@@ -66,21 +80,18 @@
               desktopPackage = factorseal.packages.${system}.factorseal-desktop;
             };
             environment.systemPackages = [
-              ghostty.packages.${system}.default
+              ghosttyWayland
               pkgs-unstable.herdr
             ];
             programs.dank-material-shell.quickshell.package = quickshell.packages.${system}.default;
             xdg.portal.extraPortals = [ niriScreenshare ];
-            # Desktop launchers use Ghostty's upstream D-Bus activation unit.
-            # It needs the same EGL platform as the existing Ghostty service.
+            # Use Ghostty's bundled single-instance service for login and D-Bus launches.
+            systemd.packages = [ ghostty.packages.${system}.default ];
+            services.dbus.packages = [ ghostty.packages.${system}.default ];
             systemd.user.services."app-com.mitchellh.ghostty" = {
               overrideStrategy = "asDropin";
               environment.EGL_PLATFORM = "wayland";
-            };
-            systemd.user.services.ghostty = {
-              description = "Ghostty terminal";
               partOf = [ "graphical-session.target" ];
-              after = [ "graphical-session.target" ];
               wantedBy = [ "graphical-session.target" ];
               # An interactive shell needs the same command paths as a Niri launch.
               path = [
@@ -94,8 +105,6 @@
                 "/run/current-system/sw"
               ];
               serviceConfig = {
-                Environment = "EGL_PLATFORM=wayland";
-                ExecStart = "${ghostty.packages.${system}.default}/bin/ghostty";
                 Restart = "on-failure";
                 RestartSec = 5;
               };
