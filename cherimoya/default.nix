@@ -96,6 +96,47 @@
   systemd.user.services.pipewire.environment.PULSE_LATENCY_MSEC = "60";
   systemd.user.services.pipewire-pulse.environment.PULSE_LATENCY_MSEC = "60";
 
+  # UPower requests suspend once when the battery reaches 5%. If a wakeup
+  # interrupts that sleep, retry while the battery remains critically low.
+  systemd.services.low-battery-suspend = {
+    description = "Retry suspend while the battery is at or below 5%";
+    path = [ pkgs.systemd ];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      # Never suspend on external power, including while charging is paused.
+      for supply in /sys/class/power_supply/*; do
+        if [ -r "$supply/online" ] && [ "$(cat "$supply/online")" = 1 ]; then
+          exit 0
+        fi
+      done
+
+      for battery in /sys/class/power_supply/*; do
+        [ -r "$battery/type" ] || continue
+        [ "$(cat "$battery/type")" = Battery ] || continue
+        [ "$(cat "$battery/status")" = Discharging ] || continue
+        capacity=$(cat "$battery/capacity")
+        case "$capacity" in
+          ""|*[!0-9]*) continue ;;
+        esac
+        if [ "$capacity" -le 5 ]; then
+          echo "Battery at $capacity% without external power; requesting suspend"
+          systemctl suspend --no-block
+          exit 0
+        fi
+      done
+    '';
+  };
+  systemd.timers.low-battery-suspend = {
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnBootSec = "1min";
+      OnUnitInactiveSec = "30s";
+      AccuracySec = "5s";
+      # This timer must not wake the laptop to check its battery.
+      WakeSystem = false;
+    };
+  };
+
   nix = {
    settings = {
      cores = 4;
