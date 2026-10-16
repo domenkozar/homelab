@@ -47,6 +47,11 @@
       name = "amdgpu-dpia-link-training-retry";
       patch = ./amdgpu-dpia-link-training-retry.patch;
     }
+    {
+      # Experimental UCSI 1.2 fallback for the Yoga Slim 7 14APU8's zero version.
+      name = "ucsi-lenovo-yoga-slim-7-version";
+      patch = ./ucsi-lenovo-yoga-slim-7-version.patch;
+    }
   ];
 
   # Realtek RTL8852CE (rtw89_8852ce) stability workaround. The in-tree driver

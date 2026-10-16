@@ -164,6 +164,42 @@ HBR2 = 4 lanes × 5.4 Gbps × 0.8 (8b/10b) = 17.28 Gbps effective
 
 ## Known Issues
 
+### Yoga Slim 7 14APU8: missing UCSI interface
+
+On Lenovo 83AA with BIOS M6CN44WW, a return probe captured a successful UCSI
+version read returning zero, followed by `ucsi_register()` and
+`ucsi_acpi_probe()` returning `-ENODEV`. The firmware's `UsbCTabl` read method
+copies incoming data and command status without initializing the version.
+
+The experimental `ucsi-lenovo-yoga-slim-7-version` kernel patch assumes UCSI 1.2
+only for the exact Lenovo model when the version is zero. It preserves nonzero
+versions and read errors, adapting the
+[upstream Acer workaround](https://git.kernel.org/linus/8c51ea651d043c786c37668c51624bd6b338a0ef)
+to the configured Linux 7.2 kernel. Runtime behavior is not yet validated;
+charging has worked with the UCSI interface absent, so this is not a confirmed
+fix for intermittent charging.
+
+After booting the patched kernel, check initialization:
+
+```bash
+journalctl -k -b | rg 'ucsi|UCSI|USBC000'
+ls /sys/class/typec
+ls /sys/class/power_supply
+```
+
+Expect the fallback warning and registered Type-C ports. Record any subsequent
+PPM initialization errors. Compare external power detection and battery state
+across repeated connections, both USB-C plug orientations, and suspend/resume:
+
+```bash
+cat /sys/class/power_supply/ADP0/online
+cat /sys/class/power_supply/BAT0/status
+```
+
+At a full battery, `Full` is normal; verify external power detection separately.
+If the controller fails to initialize or behavior regresses, boot the previous
+NixOS generation and remove this patch entry before the next rebuild.
+
 ### Samsung M7 Smart Monitor (S32BM702)
 - Known Linux compatibility issues with USB-C
 - Samsung confirmed "compatibility issue with Linux" — no official support
