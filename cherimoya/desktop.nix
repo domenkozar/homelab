@@ -21,6 +21,9 @@ in
   programs.niri.enable = true;
   environment.etc."niri/recording.kdl".source = ./obs/recording.kdl;
   security.polkit.enable = true;
+  # DMS falls back to direct sysfs writes when logind cannot resolve its session.
+  services.udev.packages = [ pkgs.brightnessctl ];
+  users.users.domen.extraGroups = [ "video" ];
   # Factorseal Desktop owns org.freedesktop.secrets.
   services.gnome.gnome-keyring.enable = lib.mkForce false;
 
