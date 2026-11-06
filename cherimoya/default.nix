@@ -249,7 +249,6 @@
 
     # Unfree software
     signal-desktop
-    zoom-us
   ];
 
   hardware.graphics.enable = true;
