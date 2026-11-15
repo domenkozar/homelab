@@ -82,6 +82,7 @@
             environment.systemPackages = [
               ghosttyWayland
               pkgs-unstable.herdr
+              pkgs-unstable.oxidezap
             ];
             programs.dank-material-shell.quickshell.package = quickshell.packages.${system}.default;
             xdg.portal.extraPortals = [ niriScreenshare ];
