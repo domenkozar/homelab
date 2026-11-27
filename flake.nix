@@ -84,6 +84,17 @@
               pkgs-unstable.herdr
               pkgs-unstable.oxidezap
             ];
+            systemd.user.services.oxidezap = {
+              description = "OxideZap WhatsApp client";
+              partOf = [ "graphical-session.target" ];
+              after = [ "graphical-session.target" ];
+              wantedBy = [ "graphical-session.target" ];
+              serviceConfig = {
+                ExecStart = pkgs.lib.getExe pkgs-unstable.oxidezap;
+                Restart = "on-failure";
+                RestartSec = 5;
+              };
+            };
             programs.dank-material-shell.quickshell.package = quickshell.packages.${system}.default;
             xdg.portal.extraPortals = [ niriScreenshare ];
             # Use Ghostty's bundled single-instance service for login and D-Bus launches.
